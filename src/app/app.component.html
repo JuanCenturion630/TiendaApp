@@ -1,0 +1,71 @@
+<ion-app>
+  <ion-router-outlet>
+  </ion-router-outlet>
+
+  <ion-header *ngIf="paginaActual == '/home' || paginaActual == '/funcionalidades' || paginaActual == '/agregar-producto' || paginaActual == '/ver-productos'">
+    <ion-toolbar>
+      <ion-button fill="outline" style="height: 40px; font-weight: bold; font-size: 14px;">
+        FOLK & KIN
+      </ion-button>
+      <ion-button fill="outline" style="height: 40px; font-size: 14px;">
+        ¿Por qué elegirnos?
+      </ion-button>
+      <ion-button fill="outline" style="height: 40px; font-size: 14px;">
+        Funcionalidades
+      </ion-button>
+      <ion-button (click)="irALogin()" fill="outline" slot="end" style="height: 40px; font-size: 14px;">
+        Iniciar sesión
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-footer *ngIf="paginaActual == '/home' || paginaActual == '/funcionalidades' || paginaActual == '/agregar-producto' || paginaActual == '/ver-productos'">
+    <ion-toolbar>
+      <ion-row>
+
+        <ion-col>
+          <ion-card style="border: 2px solid #ffffff;">
+            <ion-card-content>
+              Contacto
+              <ion-row>Teléfono: 1133445566</ion-row>          
+              <ion-row>Dirección: Av. Zavaleta 204, Buenos Aires, Argentina</ion-row>
+              <ion-row>Email: folk_and_kin@gmail.com</ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card style="border: 2px solid #ffffff;">
+            <ion-card-content>
+              Nuestras redes
+              <ion-row>
+                <ion-icon name="logo-instagram"></ion-icon>
+                @folk_and_kin
+              </ion-row>
+              <ion-row>
+                <ion-icon name="logo-twitter"></ion-icon>
+                @folk_and_kin
+              </ion-row>
+              <ion-row>
+                <ion-icon name="logo-facebook"></ion-icon>
+                Folk and kin
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col>
+          <ion-card style="border: 2px solid #ffffff;">
+            <ion-card-content>
+              <ion-label>
+                2023 - 2023 © Folk&Kin - Todos los derechos reservados. Términos y condiciones. Políticas de privacidad. Política de calidad.
+              </ion-label>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>
+</ion-app>

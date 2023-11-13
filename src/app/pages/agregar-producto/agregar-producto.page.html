@@ -1,0 +1,61 @@
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="margin-top: 60px; height: 517px; overflow-y: auto;">
+    <ion-card>
+      <ion-card-content>
+        <ion-label style="font-size: 25px; font-weight: bold;">Agregar un producto</ion-label>
+        <ion-row style="margin-top: 30px;"></ion-row>
+        <ion-row style="margin-left: 55px; margin-right: 0px;">
+          <ion-col>
+            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(1)</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(2)</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(3)</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(4)</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(5)</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-label>Nombre</ion-label>
+        <ion-input placeholder="Ingrese el nombre de su producto"></ion-input>
+
+        <ion-row>
+          <ion-col>
+            <ion-label>Precio</ion-label>
+            <ion-input placeholder="Ingrese un precio en ARS"></ion-input>
+          </ion-col>
+
+          <ion-col>
+            <ion-label>Stock</ion-label>
+            <ion-input placeholder="Ingrese una cantidad de stock"></ion-input>
+          </ion-col>
+        </ion-row>
+        
+        <ion-label style="margin-top: 20px;"></ion-label>
+        <ion-label>Selecciona una opción</ion-label>
+        <ion-item style="width: 250px;">
+          <ion-select placeholder="Categoria"> <!--[(ngModel)]="selectedOption"-->
+            <ion-select-option value="Mueble">Mueble</ion-select-option>
+            <ion-select-option value="Calzado">Electrodoméstico</ion-select-option>
+            <ion-select-option value="Ropa">Cocina</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button fill="outline" style="height: 25px; margin-left: 748px;">Agregar variantes</ion-button>
+        <ion-row>
+          <ion-button fill="outline" style="height: 25px; margin-left: 750px;">Agregar producto</ion-button>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
+</ion-content>
