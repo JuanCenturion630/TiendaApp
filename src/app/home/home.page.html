@@ -1,49 +1,37 @@
 <ion-content [fullscreen]="true">
-  <ion-toolbar style="margin-top: 60px; height: 517px; overflow-y: auto;">
-    <ion-card style="border: 2px solid #ffffff; height: 150px;">
-      <ion-card-content>
-        FOTO DE INICIO DE PÁGINA FALTANTE
-      </ion-card-content>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">        
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/img/fondo1..jpg" style="width: 100%; height: 800px;">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fondo2.webp" style="width: 100%; height: 800px;">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/fondo3.png" style="width: 100%; height: 800px;">
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <ion-card style="position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%); max-width: 650px;">
+        <ion-card-content>
+            <ion-label style="font-size: 70px; font-weight: bold;">
+                ¡Creá tu tienda y vendé sin límites!
+            </ion-label>
+            <ion-row style="font-size: 22px;">
+                Plan gratis para comenzar y más opciones para quienes ya venden online
+            </ion-row>
+            <ion-input label="Outline input" label-placement="floating" fill="outline" placeholder="Escribí el e-mail que más usás">
+            </ion-input>
+        </ion-card-content>
     </ion-card>
-    
-    <ion-row>
-      <ion-col>
-        <ion-card style="border: 2px solid #ffffff; height: 150px;">
-          <ion-card-content>
-            <ion-label>¿Por qué elegirnos?</ion-label>
-            <ion-row>Texto faltante</ion-row>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card style="border: 2px solid #ffffff; height: 150px;">
-          <ion-card-content>
-            IMAGEN FALTANTES
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-card style="border: 2px solid #ffffff; height: 150px;">
-          <ion-card-content>
-            FOTO FALTANTE DE LAS FUNCIONALIDADES
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
-      <ion-col>
-        <ion-card style="border: 2px solid #ffffff; height: 150px;">
-          <ion-card-content>
-            <ion-label>Funcionalidades principales</ion-label>
-            <ion-row>1. ...</ion-row>
-            <ion-row>2. ...</ion-row>
-            <ion-row>3. ...</ion-row>
-            <ion-row>4. ...</ion-row>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
 </ion-content>

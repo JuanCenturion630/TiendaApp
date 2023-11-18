@@ -1,0 +1,17 @@
+/* Cambiar el color de fondo de ion-header */
+/* Cambiar el color de fondo de ion-toolbar */
+.encabezado {
+    --background: #1eb5e6; /* Cambia esto al color que desees */
+    color: #ffffff; /* Cambia esto al color del texto que desees */
+}
+ion-button {
+    --background:#1eb5e6;
+    --color: #ffffff;
+    --border-width: 0;
+}
+ion-card {
+    --background:#4b5fa0;
+    --color:#ffffff;
+    font-weight: bold;
+    font-size: 20px;
+}

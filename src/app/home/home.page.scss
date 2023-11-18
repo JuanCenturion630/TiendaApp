@@ -1,27 +1,15 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.pieDePagina {
+    --background:#4b5fa0;
+    color: #ffffff;
 }
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
+.btnIniciar {
+    position: absolute; top: 86%; left: 50%; transform: translate(-50%, -50%);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    text-transform: none;
+    font-size: 28px;
+    color: #362A84;
+    width: 255px;
+    height: 60px;
+    opacity: 0;
+  }
