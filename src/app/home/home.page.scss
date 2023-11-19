@@ -1,15 +1,11 @@
 .pieDePagina {
-    --background:#4b5fa0;
+    --background:#2c3357;
     color: #ffffff;
 }
-.btnIniciar {
-    position: absolute; top: 86%; left: 50%; transform: translate(-50%, -50%);
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    text-transform: none;
-    font-size: 28px;
-    color: #362A84;
-    width: 255px;
-    height: 60px;
-    opacity: 0;
-  }
+ion-input {
+    border-radius: 10000px; /* Ajusta el valor según tus preferencias para redondear los bordes */
+}
+ion-button {
+    --color: #ffffff;
+    --border-radius: 100px; /* Ajusta el valor según tus preferencias para redondear los bordes */
+}

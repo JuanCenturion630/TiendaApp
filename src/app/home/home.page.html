@@ -1,37 +1,249 @@
 <ion-content [fullscreen]="true">
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">        
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="assets/img/fondo1..jpg" style="width: 100%; height: 800px;">
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/fondo2.webp" style="width: 100%; height: 800px;">
-          </div>
-          <div class="carousel-item">
-            <img src="assets/img/fondo3.png" style="width: 100%; height: 800px;">
-          </div>
+    <!--Carrusel cabecera-->
+    <div class="">
+        <div id="carruselCabecera" class="carousel slide" data-bs-ride="carousel">        
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="assets/img/CarouselHome/1.jpg" style="width: 100%; height: 800px;">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/CarouselHome/2.webp" style="width: 100%; height: 800px;">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/CarouselHome/3.png" style="width: 100%; height: 800px;">
+              </div>
+            </div>
+    
+            <button class="carousel-control-prev" type="button" data-bs-target="#carruselCabecera" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carruselCabecera" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+        <!--Cuadro para crear tienda-->
+        <ion-card style="position: absolute; top: 50%; left: 30%; transform: translate(-50%, -50%); max-width: 650px; background-color: transparent; border: none; box-shadow: none">
+            <ion-card-content>
+                <ion-label style="font-size: 70px; font-weight: bold; color: #ffffff;">
+                    ¡Creá tu tienda y vendé sin límites!
+                </ion-label>
+                <ion-row style="font-size: 22px; color: #ffffff;">
+                    Plan gratis para comenzar y más opciones para quienes ya venden online
+                </ion-row>
+                <div style="margin-top: 15px;"></div>
+                <ion-input fill="outline" placeholder="Escribí el e-mail que más usás" style="background-color: #ffffff; color: black; border: none; box-shadow: none">
+                </ion-input>
+                <ion-button style="position: absolute; top: 88%; left: 80%; transform: translate(-50%, -50%); z-index: 2;">
+                    Crear tienda gratis
+                </ion-button>
+            </ion-card-content>
+        </ion-card>
+        
+        <!--Degradado no logrado-->
+        <ion-toolbar style="height: 20px; --background: #00eeff;"></ion-toolbar>
+
+        <ion-toolbar class="" style="--background: #ffffff; height: 60px;">
+            <ion-label style="height: 60px; font-size: 48px; font-weight: bold; color: #2c3357; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+                Diseñá la tienda que soñás
+            </ion-label>
+        </ion-toolbar>
+        <ion-toolbar style="--background:#ffffff;">
+            <ion-label style="height: 30px; font-size: 24px; color: #2c3357; position: absolute; top: 25%; left: 50%; transform: translate(-50%, -50%)">
+                Personaliza gratuitamente, sin ayuda de desarrolladores
+            </ion-label>
+        </ion-toolbar>
+    </div>
+
+    <!--Primera fila dinámica de imágenes promocionales-->
+    <div id="carruselFila1" class="carousel slide" data-bs-ride="carousel" style="background: #ffffff;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex justify-content-around">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica1/1.webp" alt="Imagen 1">
+                    <img style="width: 272px; height: 560px;" src="assets/img/FilaDinamica1/2.webp" alt="Imagen 2">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica1/3.webp" alt="Imagen 3">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-around">
+                    <img style="width: 272px; height: 560px;" src="assets/img/FilaDinamica1/4.webp" alt="Imagen 4">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica1/5.webp" alt="Imagen 5">
+                    <img style="width: 272px; height: 560px;" src="assets/img/FilaDinamica1/6.webp" alt="Imagen 6">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-around">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica1/7.webp" alt="Imagen 7">
+                    <img style="width: 272px; height: 560px;" src="assets/img/FilaDinamica1/8.webp" alt="Imagen 8">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica1/9.webp" alt="Imagen 9">
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carruselFila1" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+        <button class="carousel-control-next" type="button" data-bs-target="#carruselFila1" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
         </button>
     </div>
 
-    <ion-card style="position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%); max-width: 650px;">
-        <ion-card-content>
-            <ion-label style="font-size: 70px; font-weight: bold;">
-                ¡Creá tu tienda y vendé sin límites!
-            </ion-label>
-            <ion-row style="font-size: 22px;">
-                Plan gratis para comenzar y más opciones para quienes ya venden online
+    <!--Segunda fila dinámica de imágenes promocionales-->
+    <div id="carruselFila2" class="carousel slide" data-bs-ride="carousel" style="background: #ffffff;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex justify-content-around">
+                    <img style="width: 272px; height: 560px;" src="assets/img/FilaDinamica2/1.webp" alt="Imagen 1">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica2/2.webp" alt="Imagen 2">
+                    <img style="width: 272px; height: 560px;" src="assets/img/FilaDinamica2/3.webp" alt="Imagen 3">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-around">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica2/4.webp" alt="Imagen 4">
+                    <img style="width: 272px; height: 560px;" src="assets/img/FilaDinamica2/5.webp" alt="Imagen 5">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica2/6.webp" alt="Imagen 6">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-around">
+                    <img style="width: 272px; height: 560px;" src="assets/img/FilaDinamica2/7.webp" alt="Imagen 7">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica2/8.webp" alt="Imagen 8">
+                    <img style="width: 776px; height: 560px;" src="assets/img/FilaDinamica2/9.webp" alt="Imagen 9">
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carruselFila2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carruselFila2" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <ion-toolbar style="height: 5px; --background: #ffffff;"></ion-toolbar>
+
+    <ion-toolbar style="--background: #ffffff;">
+        <ion-label style="font-weight: bold; text-align: center; font-size: 48px; color: #2c3357; display: flex; align-items: center; justify-content: center;">
+            No necesitás ser un experto para 
+        </ion-label>
+        <ion-row style="font-weight: bold; text-align: center; font-size: 48px; color: #2c3357; display: flex; align-items: center; justify-content: center;">
+            crear tu tienda online
+        </ion-row>
+    </ion-toolbar>
+    
+    <ion-toolbar style="--background: #ffffff;">
+        <ion-label style="text-align: center; font-size: 24px; color: #2c3357; display: flex; align-items: center; justify-content: center;">
+            Vendé sin límites de horarios y en cualquier lugar en cuatro pasos:
+        </ion-label>
+    </ion-toolbar>
+
+    <ion-toolbar style="height: 5px; --background: #ffffff;"></ion-toolbar>
+
+    <ion-toolbar style="--background:#ffffff;">
+        <ion-card style="background-color: #ffffff; max-width: 650px; border: none; box-shadow: none; margin: auto;">
+            <ion-card-content style="height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div id="carruselPasos" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="assets/img/FilaDinamica3/1.webp" class="d-block w-100">
+                            <p style="color: #006bc8; font-size: 15px; font-weight: bold;">
+                                01. Registrá un e-mail
+                            </p>
+                            <p style="color: #2c3357; font-size: 15px;">
+                                Puede ser un correo personal o empresarial
+                            </p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/FilaDinamica3/2.webp" class="d-block w-100">
+                            <p style="color: #006bc8; font-size: 15px; font-weight: bold;">
+                                02. Personalizá tu tienda
+                            </p>
+                            <p style="color: #2c3357; font-size: 15px;">
+                                Crea una tienda única y profesional
+                            </p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/FilaDinamica3/3.webp" class="d-block w-100">
+                            <p style="color: #006bc8; font-size: 15px; font-weight: bold;">
+                                03. Integrá los medios de pago y envío
+                            </p>
+                            <p style="color: #2c3357; font-size: 15px;">
+                                Elegí las mejores opciones de pago y logística
+                            </p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/FilaDinamica3/4.webp" class="d-block w-100">
+                            <p style="color: #006bc8; font-size: 15px; font-weight: bold;">
+                                04. Armá tu catálogo de productos
+                            </p>
+                            <p style="color: #2c3357; font-size: 15px;">
+                                Subí fotos y descripciones, ¡sin límite de productos!
+                            </p>
+                        </div>
+                    </div>
+            
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carruselPasos" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carruselPasos" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </ion-toolbar>
+
+    <ion-toolbar style="height: 10px; --background: #ffffff;"></ion-toolbar>
+
+    <ion-toolbar style="--background: #006bc8;">
+        <ion-card style="--background: #006bc8; box-shadow: none; max-width: 600px; margin: auto;">
+            <ion-card-content style="font-size: 64px; color: #ffffff; text-align: center; justify-content: center;">
+                Mostrale al mundo lo que sos capaz de hacer
+                <p>
+                    <ion-button style="--color: #006bc8 !important; --background:#ffffff;">
+                        Crear tienda gratis
+                    </ion-button>
+                </p>
+            </ion-card-content>
+        </ion-card>
+        <div style="margin-top: 10px;"></div>
+    </ion-toolbar>
+
+    <ion-footer>
+        <ion-toolbar class="pieDePagina">
+            <div style="margin-top: 30px;"></div> <!--Espaciado-->
+            <ion-label style="margin-left: 20px;">Icono faltante</ion-label>
+            <div style="margin-top: 10px;"></div> 
+            <ion-row style="margin-left: 17px;">
+                <ion-col>
+                    Contacto
+                    <ion-row>Teléfono: 1133445566</ion-row>
+                    <ion-row>Dirección: Zabaleta 40, Argentina</ion-row>
+                    <ion-row>Email: folk_and_kin@gmail.com</ion-row>
+                </ion-col>
+                <ion-col>
+                    Nuestras redes
+                    <ion-row>@folk_and_kin</ion-row>
+                    <ion-row>@folk_and_kin</ion-row>
+                    <ion-row>Folk and kin</ion-row>
+                </ion-col>
             </ion-row>
-            <ion-input label="Outline input" label-placement="floating" fill="outline" placeholder="Escribí el e-mail que más usás">
-            </ion-input>
-        </ion-card-content>
-    </ion-card>
+            <div style="margin-top: 10px;"></div>  
+            <ion-row style="margin-left: 20px;">
+                2023 - 2023 © Folk&Kin - Todos los derechos reservados. Términos y condiciones. Políticas de privacidad. Política de calidad.
+            </ion-row>
+            <div style="margin-top: 10px;"></div>
+        </ion-toolbar>
+    </ion-footer>
 </ion-content>
