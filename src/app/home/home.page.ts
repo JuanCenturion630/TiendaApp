@@ -1,4 +1,5 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,11 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 })
 export class HomePage {
 
+  constructor(private router:Router) {
+
+  }
+
+  irACrearCuenta() {
+    this.router.navigate(['/crear-cuenta']);
+  }
 }

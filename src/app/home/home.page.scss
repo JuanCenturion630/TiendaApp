@@ -8,4 +8,8 @@ ion-input {
 ion-button {
     --color: #ffffff;
     --border-radius: 100px; /* Ajusta el valor según tus preferencias para redondear los bordes */
+    font-weight: 550; //Ajusto la negrita.
+}
+* {
+    font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",arial,sans-serif;
 }

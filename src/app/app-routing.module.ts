@@ -35,6 +35,14 @@ const routes: Routes = [
     path: 'olvide-password',
     loadChildren: () => import('./pages/olvide-password/olvide-password.module').then( m => m.OlvidePasswordPageModule)
   },
+  {
+    path: 'registro-finalizado',
+    loadChildren: () => import('./pages/registro-finalizado/registro-finalizado.module').then( m => m.RegistroFinalizadoPageModule)
+  },
+  {
+    path: 'registro-finalizado-datos',
+    loadChildren: () => import('./pages/registro-finalizado-datos/registro-finalizado-datos.module').then( m => m.RegistroFinalizadoDatosPageModule)
+  },
 ];
 
 @NgModule({

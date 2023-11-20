@@ -20,4 +20,8 @@ export class CrearCuentaPage implements OnInit {
   irALogin() {
     this.router.navigate(['/login']);
   }
+
+  irARegistroFinalizado() {
+    this.router.navigate(['/registro-finalizado']);
+  }
 }

@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background: url(assets/img/Login/1.jpg) no-repeat center center / cover; height: 100%;">
+    <ion-card style="height: 100vh; width: 400px; margin-left: 0px; margin-top: 0px; --background:#ffffff;">
+      <ion-card-content>
+        <ion-button (click)="irAHome()" style="--border-width: 0px; --background: #ffffff; --color: #2c3357; --box-shadow: none; margin-left: 10px; text-transform: none;">
+          Folk&Kin
+        </ion-button>
+        <ion-card style="height: auto; --background:#ffffff; border: none; box-shadow: none;">
+          <ion-card-content>
+            <ion-label style="color: #2c3357; font-size: 28px; font-weight: bold; text-align: center; display: flex; flex-direction: column; align-items: center;">
+              Ya estamos creando
+            </ion-label>
+            <ion-row style="margin-top: -7px; color: #2c3357; font-size: 28px; font-weight: bold; text-align: center; display: flex; flex-direction: column; align-items: center;">
+              tu tienda online
+            </ion-row>
+            <div style="margin-top: 15px;"></div>
+            <ion-row style="color: #473c41; font-size: 16px; text-align: center; display: inline-block; align-items: center;">
+              Mientras tanto, necesitamos unos datos de tu negocio 
+              <span style="font-weight: bold;">para ayudarte de la mejor manera.</span>
+            </ion-row>
+            <div style="margin-top: 15px;"></div>
+            <ion-row>
+              <ion-button (click)="irARegistroFinalizadoDatos()" style="text-transform: none; width: 100vh; height: 50px; --border-radius: 100px; --background: #006bc8; --ion-toolbar-background: #ffffff;">
+                Continuar
+              </ion-button>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
+</ion-content>
