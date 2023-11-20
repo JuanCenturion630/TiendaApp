@@ -36,4 +36,8 @@ export class AppComponent {
   irALogin() {
     this.router.navigate(['/login']);
   }
+
+  irAHome() {
+    this.router.navigate(['/home']);
+  }
 }

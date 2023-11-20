@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'ver-productos',
     loadChildren: () => import('./pages/ver-productos/ver-productos.module').then( m => m.VerProductosPageModule)
   },
+  {
+    path: 'olvide-password',
+    loadChildren: () => import('./pages/olvide-password/olvide-password.module').then( m => m.OlvidePasswordPageModule)
+  },
 ];
 
 @NgModule({

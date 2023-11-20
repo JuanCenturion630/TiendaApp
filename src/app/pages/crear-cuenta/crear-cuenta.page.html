@@ -1,13 +1,68 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>crear-cuenta</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">crear-cuenta</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar style="--background: #2c3357; height: 100%;">
+    <ion-card style="position: absolute; top: 50%; left: 50%; transform: translate(-25%, -50%); background-color: transparent; border: none; box-shadow: none">
+      <ion-card-content>
+          <img src="assets/img/CrearCuenta/1.jpg">
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="height: 100vh; width: 400px; margin-left: 0px; margin-top: 0px; --background:#ffffff;">
+      <ion-card-content>
+        <div style="margin-top: 3px;"></div>
+        <ion-button (click)="irAHome()" style="--border-width: 0px; --background: #ffffff; --color: #2c3357; --box-shadow: none; margin-left: 10px; text-transform: none;">
+          Folk&Kin
+        </ion-button>
+        <ion-label style="color: #2c3357; font-size: 22px; font-weight: bold; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          Comenzá hoy a vender online
+        </ion-label>
+        <ion-row style="margin-top: -7px; color: #2c3357; font-size: 22px; font-weight: bold; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          gratis con nosotros
+        </ion-row>
+        <ion-row style="color: #473c41; font-size: 15px; font-weight: bold; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          Vendé con tu plataforma favorita. ¡Sin costo mensual ni comisiones!
+        </ion-row>
+
+        <div style="margin-top: 5px;"></div>
+        <ion-card style="height: auto; --background:#ffffff; border: none; box-shadow: none;">
+          <ion-card-content>
+            <ion-label style="font-size: 15px; font-weight: bold; color: #2c3357;">
+              Nombre de tu marca
+            </ion-label>
+            <ion-input style="font-size: 15px; font-weight: bold; color: #4b5fa0" placeholder="Escribí el nombre de tu marca">
+            </ion-input>
+            <div style="margin-top: 15px;"></div>
+            <ion-label style="font-size: 15px; font-weight: bold; color: #2c3357;">
+              E-mail
+            </ion-label>
+            <ion-input style="font-size: 15px; font-weight: bold; color: #4b5fa0" placeholder="Escribí el e-mail que más usás">
+            </ion-input>
+            <div style="margin-top: 15px;"></div>
+            <ion-label style="font-size: 15px; font-weight: bold; color: #2c3357;">
+              Contraseña
+            </ion-label>
+            <ion-input style="font-size: 15px; font-weight: bold; color: #4b5fa0;" placeholder="Definí la contraseña">
+            </ion-input>
+            <div style="margin-top: 15px;"></div>
+            <ion-checkbox style="font-size: 15px; font-weight: bold; margin: auto; text-align: center; display: flex; flex-direction: column; align-items: center; --checkbox-background: #ffffff; --border-color: #494b4d;" labelPlacement="end">
+              Acepto los términos y condiciones
+            </ion-checkbox>
+            <div style="margin-top: 20px;"></div>
+            <ion-row>
+              <ion-button style="text-transform: none; width: 100vh; height: 50px; --border-radius: 100px; --background: #006bc8; --ion-toolbar-background: #ffffff;">
+                Crear tienda gratis
+              </ion-button>
+            </ion-row>
+          </ion-card-content>
+          <ion-card-content>
+            <ion-row style="font-size: 15px; color: #494b4d; text-align: center; display: flex; flex-direction: column; align-items: center;">
+              ¿Ya tenés una tienda?
+              <ion-button (click)="irALogin()" style="font-size: 15px; margin: auto; text-transform: none; --box-shadow:none; --background: transparent; --ion-toolbar-background: #00427c;">
+                Accedé.
+              </ion-button>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
 </ion-content>

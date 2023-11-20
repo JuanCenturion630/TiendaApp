@@ -13,7 +13,19 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  irAHome() {
+    this.router.navigate(['/home']);
+  }
+
   irAFuncionalidades() {
     this.router.navigate(['/funcionalidades']);
+  }
+
+  irAOlvidePassword() {
+    this.router.navigate(['/olvide-password']);
+  }
+
+  irACrearCuenta() {
+    this.router.navigate(['/crear-cuenta']);
   }
 }

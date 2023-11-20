@@ -1,49 +1,56 @@
 <ion-content [fullscreen]="true">
-  <ion-toolbar>
-    <ion-row>
-      <ion-col size="3">
-        <ion-card style="border: 2px solid #ffffff; height: 755px;">
-          <ion-card-content>
-            <ion-label style="font-size: 25px; font-weight: bold; margin-left: 60px;">
-              Administrá tu
-            </ion-label>
-            <ion-row style="font-size: 25px; font-weight: bold; margin-left: 60px;">
-              tienda online
-            </ion-row>
+  <ion-toolbar style="--background: url(assets/img/Login/1.jpg) no-repeat center center / cover; height: 100%;">
+    <ion-card style="height: 100vh; width: 400px; margin-left: 0px; margin-top: 0px; --background:#ffffff;">
+      <ion-card-content>
+        <div style="margin-top: 3px;"></div>
+        <ion-button (click)="irAHome()" style="--border-width: 0px; --background: #ffffff; --color: #2c3357; --box-shadow: none; margin-left: 10px; text-transform: none;">
+          Folk&Kin
+        </ion-button>
+        <ion-label style="color: #2c3357; font-size: 28px; font-weight: bold; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          Administrá tu
+        </ion-label>
+        <ion-row style="color: #2c3357; font-size: 28px; font-weight: bold; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          tienda online
+        </ion-row>
 
-            <div style="margin-top: 5px;"></div>
-            <ion-card style="border: 2px solid #ffffff; height: 640px;">
-              <ion-card-content>
-                <ion-label style="font-size: 20px; font-weight: bold;">Ingresá tu email</ion-label>
-                <ion-input style="font-size: 20px; font-weight: bold;" placeholder="nombre@empresa.com"></ion-input>
-                <div style="margin-top: 20px;"></div>
-                <ion-label style="font-size: 20px; font-weight: bold;">Ingresá tu contraseña</ion-label>
-                <ion-input style="font-size: 20px; font-weight: bold;" placeholder="contraseña"></ion-input>
-                <div style="margin-top: 20px;"></div>
-                <ion-checkbox style="font-size: 20px; font-weight: bold;" labelPlacement="start">Recordarme</ion-checkbox>
-                <div style="margin-top: 20px;"></div>
-                <ion-row>
-                  <ion-button (click)="irAFuncionalidades()">Ingresar</ion-button>
-                </ion-row>
-              </ion-card-content>
-              <ion-card-content style="border: 2px solid #ffffff;">
-                <ion-button>Olvidé mi contraseña</ion-button>
-                <ion-row>
-                  <ion-button>Crear una cuenta</ion-button>
-                </ion-row>
-              </ion-card-content>
-            </ion-card>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-  
-      <ion-col>
-        <ion-card style="border: 2px solid #ffffff; height: 755px;">
+        <div style="margin-top: 5px;"></div>
+        <ion-card style="height: auto; --background:#ffffff; border: none; box-shadow: none;">
           <ion-card-content>
-            IMAGEN FALTANTE
+            <ion-label style="font-size: 15px; font-weight: bold; color: #2c3357;">
+              Ingresá tu email
+            </ion-label>
+            <ion-input style="font-size: 15px; font-weight: bold; color: #4b5fa0" placeholder="nombre@empresa.com">
+            </ion-input>
+            <div style="margin-top: 15px;"></div>
+            <ion-label style="font-size: 15px; font-weight: bold; color: #2c3357;">
+              Ingresá tu contraseña
+            </ion-label>
+            <ion-input style="font-size: 15px; font-weight: bold; color: #4b5fa0;" placeholder="contraseña">
+            </ion-input>
+            <div style="margin-top: 15px;"></div>
+            <ion-checkbox style="font-size: 15px; font-weight: bold; margin: auto; text-align: center; display: flex; flex-direction: column; align-items: center; --checkbox-background: #ffffff; --border-color: #494b4d;" labelPlacement="start">
+              Recordarme
+            </ion-checkbox>
+            <div style="margin-top: 20px;"></div>
+            <ion-row>
+              <ion-button (click)="irAFuncionalidades()" style="text-transform: none; width: 100vh; height: 50px; --border-radius: 100px; --background: #006bc8; --ion-toolbar-background: #ffffff;">
+                Ingresar
+              </ion-button>
+            </ion-row>
+          </ion-card-content>
+          <ion-card-content>
+            <ion-button (click)="irAOlvidePassword()" style="font-size: 15px; --box-shadow: none; text-transform: none; width: auto; --background: transparent; --ion-toolbar-background: #00427c; text-align: center; display: flex; flex-direction: column; align-items: center;">
+              ¿Te olvidaste tu contraseña?
+            </ion-button>
+            <ion-row style="font-size: 15px; color: #494b4d; text-align: center; display: flex; flex-direction: column; align-items: center;">
+              ¿Todavía no vendés por internet?
+              <ion-button (click)="irACrearCuenta()" style="font-size: 15px; margin: auto; text-transform: none; --box-shadow:none; --background: transparent; --ion-toolbar-background: #00427c;">
+                Creá tu cuenta
+              </ion-button>
+            </ion-row>
           </ion-card-content>
         </ion-card>
-      </ion-col>
-    </ion-row>
+      </ion-card-content>
+    </ion-card>
   </ion-toolbar>
 </ion-content>
