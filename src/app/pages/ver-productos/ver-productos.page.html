@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true">
+    <ion-toolbar style="height: 100%; display: flex; justify-content: center; align-items: center; --background: #ffffff;">
+        <ion-label style="font-size: 28px; font-weight: 500; color:#2C3357; margin-left: 15px;">
+            Productos
+        </ion-label>
+        <ion-row>
+            <ion-col>
+                <img src="assets/img/VerProductos/1.png">
+            </ion-col>
+            <ion-col>
+                <ion-card style="height: 100vh; display: flex; justify-content: center; align-items: center; --background:#ffffff; box-shadow: none;">
+                    <ion-card-content>
+                        <ion-row style="font-size: 24px; color:#2C3357; font-weight: 550;">
+                            Subí tus productos
+                        </ion-row>
+                        <ion-row style="font-size: 18px; color:#2C3357;">
+                            ¡Agregar productos es fundamental para empezar a vender! Una vez cargados, vas a poder administrarlos desde acá.
+                        </ion-row>
+                        <div style="margin-top: 15px;"></div>
+                        <ion-button (click)="irAAgregarProductos()" style="--border-radius: 10px; text-transform: none; --ion-toolbar-background:#ffffff; --background: #006bc8; font-weight: 550;">
+                            Agregar tu primer producto
+                        </ion-button>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-content>
