@@ -16,4 +16,8 @@ export class FuncionalidadesPage implements OnInit {
   irAAgregarProducto() {
     this.router.navigate(['/agregar-producto']);
   }
+
+  irAVerProductos() {
+    this.router.navigate(['/ver-productos']);
+  }
 }

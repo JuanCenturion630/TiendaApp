@@ -1,22 +1,49 @@
 <ion-content [fullscreen]="true">
-  <ion-toolbar style="margin-top: 60px; height: 517px;">
-    <ion-card>
+  <ion-toolbar style="height: 100%; display: flex; justify-content: center; align-items: center; --background: #ffffff;">
+    <ion-label style="font-size: 28px; font-weight: 500; color:#2C3357; margin-left: 15px;">
+      Panel
+    </ion-label>
+    <ion-card style="height: 70vh; display: flex; justify-content: center; align-items: center; --background:#ffffff; box-shadow: none;">
       <ion-card-content>
-        <ion-label style="font-size: 25px; font-weight: bold;">Panel</ion-label>
-        <ion-row style="font-size: 20px; font-weight: bold;">Te damos la bienvenida a tu tienda</ion-row>
-        <ion-row style="margin-top: 30px;"></ion-row>
-        <ion-row style="margin-left: 100px; margin-right: 0px;">
+        <ion-row style="font-size: 24px; color:#2C3357;">
+          ¡Te damos la bienvenida a tu tienda!
+        </ion-row>
+        <ion-row style="font-size: 18px; color:#2C3357;">
+          Sentite libre para explorar, o empezá por alguna de estas tareas:
+        </ion-row>
+        <div style="margin-top: 30px;"></div>
+        <ion-row>
           <ion-col>
-            <ion-button (click)="irAAgregarProducto()" fill="outline" style="height: 250px; width: 250px;">Agregar Producto</ion-button>
+            <ion-button (click)="irAAgregarProducto()" style="height: 250px; width: 250px; text-transform: none; --background:#ffffff; --ion-toolbar-background: #2D2938; border: 1px solid rgba(72, 61, 66, 0.1); position: relative;">
+              <ion-icon name="add" style="font-size: 150px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></ion-icon>
+              <span style="position: absolute; bottom: 10px; text-align: center; font-weight: bold; width: 100%;">
+                Agregar productos
+              </span>
+            </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button fill="outline" style="height: 250px; width: 250px;">Ver Productos</ion-button>
+            <ion-button (click)="irAVerProductos()" style="height: 250px; width: 250px; text-transform: none; --background:#ffffff; --ion-toolbar-background: #2D2938; border: 1px solid rgba(72, 61, 66, 0.1); position: relative;">
+              <ion-icon name="clipboard" style="font-size: 150px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></ion-icon>
+              <span style="position: absolute; bottom: 10px; text-align: center; font-weight: bold; width: 100%;">
+                Ver productos
+              </span>
+            </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button fill="outline" style="height: 250px; width: 250px;">Configurar Medio de Pago</ion-button>
+            <ion-button style="height: 250px; width: 250px; text-transform: none; --background:#ffffff; --ion-toolbar-background: #2D2938; border: 1px solid rgba(72, 61, 66, 0.1); position: relative;">
+              <ion-icon name="card" style="font-size: 150px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></ion-icon>
+              <span style="position: absolute; bottom: 10px; text-align: center; font-weight: bold; width: 100%;">
+                Configurar un medio de pago
+              </span>
+            </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button fill="outline" style="height: 250px; width: 250px;">Configurar envío</ion-button>
+            <ion-button style="height: 250px; width: 250px; text-transform: none; --background:#ffffff; --ion-toolbar-background: #2D2938; border: 1px solid rgba(72, 61, 66, 0.1); position: relative;">
+              <ion-icon name="storefront" style="font-size: 150px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></ion-icon>
+              <span style="position: absolute; bottom: 10px; text-align: center; font-weight: bold; width: 100%;">
+                Configurar locales y envíos
+              </span>
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
