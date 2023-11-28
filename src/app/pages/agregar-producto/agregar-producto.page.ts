@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -8,9 +9,13 @@ import { AlertController } from '@ionic/angular';
 })
 export class AgregarProductoPage implements OnInit {
 
-  constructor(private alerta:AlertController) { }
+  constructor(private alerta:AlertController,private menu: MenuController) { }
 
   ngOnInit() {
+  }
+
+  abrirMenu() {
+    this.menu.toggle('tuMenuId'); // Reemplaza 'tuMenuId' con el ID de tu ion-menu
   }
 
   openFileInput(id:string) {
