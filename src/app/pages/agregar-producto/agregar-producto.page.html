@@ -1,61 +1,228 @@
+<ion-menu contentId="btnCategoria" side="end">
+  <ion-toolbar>
+    <ion-header>
+      <ion-title>Categorías</ion-title>
+    </ion-header>
+  </ion-toolbar>
+  <ion-content class="ion-padding">
+    Seleccione una opción.
+    <div style="margin-top: 5px;"></div>
+  </ion-content>
+</ion-menu>
+
 <ion-content [fullscreen]="true">
-  <ion-toolbar style="margin-top: 60px; height: 517px; overflow-y: auto;">
-    <ion-card>
-      <ion-card-content>
-        <ion-label style="font-size: 25px; font-weight: bold;">Agregar un producto</ion-label>
-        <ion-row style="margin-top: 30px;"></ion-row>
-        <ion-row style="margin-left: 55px; margin-right: 0px;">
-          <ion-col>
-            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(1)</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(2)</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(3)</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(4)</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button fill="outline" style="height: 250px; width: 250px;">Foto faltante(5)</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
+  <ion-toolbar style="height: 100%; display: flex; justify-content: center; align-items: center; --background: #ffffff;">
+    <div style="margin-top:38px;"></div>
+    <ion-label style="font-size: 28px; font-weight: 500; color:#2C3357; margin-left: 15px;">
+        Productos
+    </ion-label>
+    <ion-row style="height: 80vh; display: flex; justify-content: center; align-items: center; overflow-y: auto;">
+      <!--Nombre y descripción-->
+      <ion-card style="height: auto; --background:#ffffff; border: none;">
+        <ion-card-content>
+          <ion-label style="font-size: 22px; font-weight: bold; color: #2C3357;">
+            Nombre y descripción
+          </ion-label>
+          <div style="margin-top: 5px"></div>
 
-    <ion-card>
-      <ion-card-content>
-        <ion-label>Nombre</ion-label>
-        <ion-input placeholder="Ingrese el nombre de su producto"></ion-input>
+          <ion-row style="font-size: 15px; font-weight: bold; color: #2c3357;">
+            Nombre
+          </ion-row>
+          <div style="margin-top: 5px"></div>
 
-        <ion-row>
-          <ion-col>
-            <ion-label>Precio</ion-label>
-            <ion-input placeholder="Ingrese un precio en ARS"></ion-input>
-          </ion-col>
+          <ion-input style="--padding-start: 5px; font-size: 15px; font-weight: bold; color: #2c3357; border: 1px solid #2C3357; border-radius: 10px; box-shadow: none;" 
+            placeholder="Escribí el nombre de tu producto">
+          </ion-input>
+          <div style="margin-top: 5px"></div>
 
-          <ion-col>
-            <ion-label>Stock</ion-label>
-            <ion-input placeholder="Ingrese una cantidad de stock"></ion-input>
-          </ion-col>
-        </ion-row>
-        
-        <ion-label style="margin-top: 20px;"></ion-label>
-        <ion-label>Selecciona una opción</ion-label>
-        <ion-item style="width: 250px;">
-          <ion-select placeholder="Categoria"> <!--[(ngModel)]="selectedOption"-->
-            <ion-select-option value="Mueble">Mueble</ion-select-option>
-            <ion-select-option value="Calzado">Electrodoméstico</ion-select-option>
-            <ion-select-option value="Ropa">Cocina</ion-select-option>
-          </ion-select>
-        </ion-item>
+          <ion-label style="font-size: 15px; font-weight: bold; color: #2c3357;">
+            Descripción
+          </ion-label>
+          <div style="margin-top: 5px"></div>
 
-        <ion-button fill="outline" style="height: 25px; margin-left: 748px;">Agregar variantes</ion-button>
-        <ion-row>
-          <ion-button fill="outline" style="height: 25px; margin-left: 750px;">Agregar producto</ion-button>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
+          <ion-textarea style="--padding-start: 5px; font-size: 15px; font-weight: bold; color: #2c3357; height: 150px; width: 750px; border: 1px solid #2C3357; border-radius: 10px;" 
+            contenteditable="true" placeholder="Escribí una descripción para tu producto">
+          </ion-textarea>
+        </ion-card-content>
+      </ion-card>
+
+      <!--Fotos-->
+      <ion-card style="height: auto; --background:#ffffff; border: none; width: 780px;">
+        <ion-card-content>
+          <ion-label style="font-size: 22px; font-weight: bold; color: #2C3357;">
+            Fotos
+          </ion-label>
+          <div style="margin-top: 5px"></div>
+          <ion-row>
+
+            <ion-col>
+              <input type="file" accept="image/*" (change)="handleImageChange($event,'foto1','icono1','span1','borrarFoto1')" style="display: none;" id="fileInput1"/>
+              
+              <ion-button id="foto1" (click)="openFileInput('fileInput1')" style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
+                <ion-icon id="icono1" name="add-circle-outline" style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
+                </ion-icon>
+                <span id="span1" style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
+                  Vista de frente
+                </span>
+              </ion-button>
+
+              <ion-button id="borrarFoto1" (click)="confirmarBorrarFoto('foto1','icono1','span1','borrarFoto1')" style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
+                <ion-icon name="trash" style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                </ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col>
+              <input type="file" accept="image/*" (change)="handleImageChange($event,'foto2','icono2','span2','borrarFoto2')" style="display: none;" id="fileInput2"/>
+              
+              <ion-button id="foto2" (click)="openFileInput('fileInput2')" style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
+                <ion-icon id="icono2" name="add-circle-outline" style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
+                </ion-icon>
+                <span id="span2" style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
+                  Vista izquierda
+                </span>
+              </ion-button>
+
+              <ion-button id="borrarFoto2" (click)="confirmarBorrarFoto('foto2','icono2','span2','borrarFoto2')" style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
+                <ion-icon name="trash" style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                </ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col>
+              <input type="file" accept="image/*" (change)="handleImageChange($event,'foto3','icono3','span3','borrarFoto3')" style="display: none;" id="fileInput3"/>
+              
+              <ion-button id="foto3" (click)="openFileInput('fileInput3')" style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
+                <ion-icon id="icono3" name="add-circle-outline" style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
+                </ion-icon>
+                <span id="span3" style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
+                  Vista derecha
+                </span>
+              </ion-button>
+
+              <ion-button id="borrarFoto3" (click)="confirmarBorrarFoto('foto3','icono3','span3','borrarFoto3')" style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
+                <ion-icon name="trash" style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                </ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col>
+              <input type="file" accept="image/*" (change)="handleImageChange($event,'foto4','icono4','span4','borrarFoto4')" style="display: none;" id="fileInput4"/>
+              
+              <ion-button id="foto4" (click)="openFileInput('fileInput4')" style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
+                <ion-icon id="icono4" name="add-circle-outline" style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
+                </ion-icon>
+                <span id="span4" style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
+                  Vista de atrás
+                </span>
+              </ion-button>
+
+              <ion-button id="borrarFoto4" (click)="confirmarBorrarFoto('foto4','icono4','span4','borrarFoto4')" style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
+                <ion-icon name="trash" style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                </ion-icon>
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+
+          <div style="margin-top: 5px"></div>
+          <ion-row>
+            <ion-label style="border-radius: 150px; border: 1px solid #2C3357; padding-left: 5px; padding-right: 5px;">
+              <ion-icon name="expand"></ion-icon>
+              Tamaño mínimo recomendado: 1024px
+            </ion-label>
+            <ion-label style="color: #ffffff;">.</ion-label>
+            <ion-label style="border-radius: 150px; border: 1px solid #2C3357; padding-left: 5px; padding-right: 5px;">
+              <ion-icon name="image"></ion-icon>
+              Formatos recomendados: PNG, JPEG o GIF
+            </ion-label>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
+      <!--Precio-->
+      <ion-card style="height: auto; --background:#ffffff; border: none; width: 780px;">
+        <ion-card-content>
+          <ion-label style="font-size: 22px; font-weight: bold; color: #2C3357;">
+            Precio
+          </ion-label>
+          <div style="margin-top: 5px"></div>
+          
+          <ion-row style="font-size: 15px; font-weight: bold; color: #2c3357;">
+            Precio de venta
+          </ion-row>
+          <div style="margin-top: 5px"></div>
+
+          <ion-input style="--padding-start: 5px; font-size: 15px; font-weight: bold; color: #2c3357; border: 1px solid #2C3357; border-radius: 10px; box-shadow: none;" 
+            placeholder="$ 0.00">
+          </ion-input>
+        </ion-card-content>
+      </ion-card>
+
+      <!--Stock-->
+      <ion-card style="height: auto; --background:#ffffff; border: none; width: 780px;">
+        <ion-card-content>
+          <ion-label style="font-size: 22px; font-weight: bold; color: #2C3357;">
+            Stock
+          </ion-label>
+          <div style="margin-top: 5px"></div>
+          
+          <ion-row style="font-size: 15px; font-weight: bold; color: #2c3357;">
+            Cantidad
+          </ion-row>
+          <div style="margin-top: 5px"></div>
+
+          <ion-input style="--padding-start: 8px; font-size: 15px; font-weight: bold; color: #2c3357; border: 1px solid #2C3357; border-radius: 10px; box-shadow: none;" 
+            placeholder="0">
+          </ion-input>
+        </ion-card-content>
+      </ion-card>
+
+      <!--Categorías-->
+      <ion-card style="height: auto; --background:#ffffff; border: none; width: 780px;">
+        <ion-card-content>
+          <ion-label style="font-size: 22px; font-weight: bold; color: #2C3357;">
+            Categorías
+          </ion-label>
+          <div style="margin-top: 5px"></div>
+          
+          <ion-row style="font-size: 15px; font-weight: bold; color: #2c3357;">
+            Ayudá a tus clientes a encontrar más rápido tus productos
+          </ion-row>
+          <div style="margin-top: 5px"></div>
+
+          <ion-button id="btnCategoria" style="--background:transparent; --ion-toolbar-background:#006bc8; --border-radius:100px; text-transform: none;">
+            <ion-icon name="add-circle-outline" style="font-weight: bold;">
+            </ion-icon>
+            <span style="font-weight: 550;">
+              Agregar categorías
+            </span>
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+
+      <!--Variantes-->
+      <ion-card style="height: auto; --background:#ffffff; border: none; width: 780px;">
+        <ion-card-content>
+          <ion-label style="font-size: 22px; font-weight: bold; color: #2C3357;">
+            Variantes
+          </ion-label>
+          <div style="margin-top: 5px"></div>
+          
+          <ion-row style="font-size: 15px; font-weight: bold; color: #2c3357;">
+            Combiná diferentes propiedades de tu producto. Ejemplo: color + tamaño.
+          </ion-row>
+          <div style="margin-top: 5px"></div>
+
+          <ion-button id="btnVariantes" style="--background:transparent; --ion-toolbar-background:#006bc8; --border-radius:100px; text-transform: none;">
+            <ion-icon name="add-circle-outline" style="font-weight: bold;">
+            </ion-icon>
+            <span style="font-weight: 550;">
+              Agregar variantes
+            </span>
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
   </ion-toolbar>
 </ion-content>
