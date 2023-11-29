@@ -1,10 +1,187 @@
-<ion-menu contentId="main" side="end" menuId="tuMenuId">
-  <!-- Contenido del menú aquí -->
+<ion-menu contentId="encabezadoInvisible" side="end" menuId="menuCategorias" style="--ion-background-color:#ffffff; --width: 475px;">
+  <ion-toolbar>
+    <ion-header>
+      <ion-title>Categorías</ion-title>
+    </ion-header>
+  </ion-toolbar>
+  <ion-content class="ion-padding">
+    <div style="margin-top: -15px"></div>
+    <ion-button (click)="cerrarMenu('menuCategorias')" style="margin-left: -15px; --background:#ffffff; --box-shadow:none; --color:#2C3357;">
+      <ion-icon name="chevron-back"></ion-icon>
+    </ion-button>
+
+    <ion-row>
+      <ion-label style="font-size: 28px; font-weight: bold; color:#2C3357;">
+        Categorías
+      </ion-label>
+    </ion-row>
+    <div style="margin-top: 5px;"></div>
+    
+    <ion-searchbar placeholder="Buscar categorías" style="width: 107%; margin-left: -15px; --border-radius: 10px; --ion-color-step-850:#2C3357;">
+    </ion-searchbar>
+
+    <ion-toolbar style="--background:#ffffff; margin-left: -15px; border-top: 1px solid #2C3357; border-bottom: 1px solid #2C3357; width: 107%;">
+      <ion-button (click)="mostrarEtiqueta('agregarCategoriaDiv')" style="margin-left: -8px; --background:#ffffff; --ion-toolbar-background:#006bc8; text-transform: none; --box-shadow: none;">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        Nueva categoría
+      </ion-button>
+      
+      <div id="agregarCategoriaDiv" style="position: relative; width: 97%; display: none;">
+        <ion-input 
+          style="--padding-start: 5px; margin-left: 5px; font-size: 15px; font-weight: bold; color: #2c3357; border: 1px solid #2C3357; border-radius: 10px; box-shadow: none; width: 100%;" 
+          placeholder="Escribí una nueva categoría"
+          [(ngModel)]="nuevaCategoria">
+        </ion-input>
+        <ion-button 
+          style="position: absolute; top: 0%; right: 0%; z-index: 4; --border-radius: 15px; --background:#006bc8; --ion-toolbar-background:#ffffff; text-transform: none; font-weight: bold;" 
+          [disabled]="!nuevaCategoria"
+          (click)="guardarCategoria('agregarCategoriaDiv')">
+          Guardar
+        </ion-button>
+      </div>
+      <div id="espaciado" style="margin-top: 5px; display: block;"></div>
+    </ion-toolbar>
+
+    <ion-list style="margin-left: -15px; --ion-item-background:#ffffff; width: 107%;">
+      <ion-item (click)="toggleCheckbox('Muebles')" style="width: 100%; --padding-start:0px;">
+        <ion-label style="color:#2C3357; margin-left: 8px;">
+          Muebles
+        </ion-label>
+        <ion-checkbox [checked]="isCheckboxChecked('Muebles')" style="--border-color:#2C3357;">
+        </ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-menu>
+
+<ion-menu contentId="encabezadoInvisible" side="end" menuId="menuVariantes" style="--ion-background-color:#ffffff; --width: 475px;">
+  <ion-toolbar>
+    <ion-header>
+      <ion-title>Variantes</ion-title>
+    </ion-header>
+  </ion-toolbar>
+  <ion-content class="ion-padding">
+
+    <!--Parte del menú de variantes dedicada a los colores-->
+    <div style="margin-top: -15px"></div>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="cerrarMenu('menuVariantes')" style="margin-left: -15px; --background:#ffffff; --box-shadow:none; --color:#2C3357;">
+          <ion-icon name="chevron-back"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button 
+          (click)="crearVariante()"
+          [disabled]="!isItemSelected"
+          style="margin-left: 270px; --background:#006bc8; --color:#ffffff; --border-radius: 10px; --box-shadow:none; text-transform: none;">
+          Crear
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-label style="font-size: 28px; font-weight: bold; color:#2C3357;">
+        Variantes
+      </ion-label>
+    </ion-row>
+    <div style="margin-top: 5px;"></div>
+    
+    <ion-label style="font-size: 22px; font-weight: bold; color:#2C3357;">
+      Color
+    </ion-label>
+    
+    <ion-searchbar placeholder="Buscar color" style="width: 107%; margin-left: -15px; --border-radius: 10px; --ion-color-step-850:#2C3357;">
+    </ion-searchbar>
+
+    <ion-toolbar style="--background:#ffffff; margin-left: -15px; border-top: 1px solid #2C3357; border-bottom: 1px solid #2C3357; width: 107%;">
+      <ion-button (click)="mostrarEtiqueta('agregarColorDiv')" style="margin-left: -8px; --background:#ffffff; --ion-toolbar-background:#006bc8; text-transform: none; --box-shadow: none;">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        Nuevo color
+      </ion-button>
+      
+      <div id="agregarColorDiv" style="position: relative; width: 97%; display: none;">
+        <ion-input 
+          style="--padding-start: 5px; margin-left: 5px; font-size: 15px; font-weight: bold; color: #2c3357; border: 1px solid #2C3357; border-radius: 10px; box-shadow: none; width: 100%;" 
+          placeholder="Escribí el nombre del nuevo color"
+          [(ngModel)]="nuevoColor">
+        </ion-input>
+        <ion-button 
+          style="position: absolute; top: 0%; right: 0%; z-index: 4; --border-radius: 15px; --background:#006bc8; --ion-toolbar-background:#ffffff; text-transform: none; font-weight: bold;" 
+          [disabled]="!nuevoColor"
+          (click)="guardarColor('agregarColorDiv')">
+          Guardar
+        </ion-button>
+      </div>
+      <div style="margin-top: 5px;"></div>
+    </ion-toolbar>
+
+    <ion-list style="margin-left: -15px; --ion-item-background:#ffffff; width: 107%;">
+      <ion-item (click)="toggleCheckboxVariantes('Amarillo')" style="width: 100%; --padding-start:0px;">
+        <ion-label style="color:#2C3357; margin-left: 8px;">
+          Amarillo
+        </ion-label>
+        <ion-checkbox [checked]="isCheckboxCheckedVariantes('Amarillo')" style="--border-color:#2C3357;">
+        </ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <!--Parte del menú de variantes dedicada a las tallas-->
+    <div style="margin-top: 5px;"></div>
+    <ion-label style="font-size: 22px; font-weight: bold; color:#2C3357;">
+      Tallas
+    </ion-label>
+    
+    <ion-searchbar placeholder="Buscar tallas" style="width: 107%; margin-left: -15px; --border-radius: 10px; --ion-color-step-850:#2C3357;">
+    </ion-searchbar>
+
+    <ion-toolbar style="--background:#ffffff; margin-left: -15px; border-top: 1px solid #2C3357; border-bottom: 1px solid #2C3357; width: 107%;">
+      <ion-button (click)="mostrarEtiqueta('agregarTallaDiv')" style="margin-left: -8px; --background:#ffffff; --ion-toolbar-background:#006bc8; text-transform: none; --box-shadow: none;">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        Nueva talla
+      </ion-button>
+      
+      <div id="agregarTallaDiv" style="position: relative; width: 97%; display: none;">
+        <ion-input 
+          style="--padding-start: 5px; margin-left: 5px; font-size: 15px; font-weight: bold; color: #2c3357; border: 1px solid #2C3357; border-radius: 10px; box-shadow: none; width: 100%;" 
+          placeholder="Escribí el nombre de la nueva talla"
+          [(ngModel)]="nuevaTalla">
+        </ion-input>
+        <ion-button 
+          style="position: absolute; top: 0%; right: 0%; z-index: 4; --border-radius: 15px; --background:#006bc8; --ion-toolbar-background:#ffffff; text-transform: none; font-weight: bold;" 
+          [disabled]="!nuevaTalla"
+          (click)="guardarTalla('agregarTallaDiv')">
+          Guardar
+        </ion-button>
+      </div>
+      <div style="margin-top: 5px;"></div>
+    </ion-toolbar>
+
+    <ion-list style="margin-left: -15px; --ion-item-background:#ffffff; width: 107%;">
+      <ion-item (click)="toggleCheckboxVariantes('XL')" style="width: 100%; --padding-start:0px;">
+        <ion-label style="color:#2C3357; margin-left: 8px;">
+          XL
+        </ion-label>
+        <ion-checkbox [checked]="isCheckboxCheckedVariantes('XL')" style="--border-color:#2C3357;">
+        </ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header id="encabezadoInvisible">
+  <ion-toolbar>
+    <ion-title>Encabezado Invisible</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-toolbar style="height: auto; display: flex; justify-content: center; align-items: center; --background: #ffffff; overflow-y: auto;">
-    <div style="margin-top:62px;"></div>
+    <div style="margin-top:11px;"></div>
       <ion-label style="font-size: 28px; font-weight: 500; color:#2C3357; margin-left: 15px;">
           Productos
       </ion-label>
@@ -182,12 +359,24 @@
           </ion-label>
           <div style="margin-top: 5px"></div>
           
-          <ion-row style="font-size: 15px; font-weight: bold; color: #2c3357;">
+          <ion-row *ngIf="descripcionVisible" style="font-size: 15px; font-weight: bold; color: #2c3357;">
             Ayudá a tus clientes a encontrar más rápido tus productos
           </ion-row>
+          <div *ngIf="!descripcionVisible">
+            <ion-chip 
+              *ngFor="let chip of ionChips" 
+              style="color: #2C3357; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              {{ chip }}
+              <ion-icon 
+                name="close" 
+                (click)="eliminarIonChip(chip)" 
+                style="color: #2C3357;">
+              </ion-icon>
+            </ion-chip>
+          </div>
           <div style="margin-top: 5px"></div>
 
-          <ion-button id="btnCategoria" style="--background:transparent; --ion-toolbar-background:#006bc8; --border-radius:100px; text-transform: none;">
+          <ion-button (click)="abrirMenu('menuCategorias')" style="--background:transparent; --ion-toolbar-background:#006bc8; --border-radius:100px; text-transform: none;">
             <ion-icon name="add-circle-outline" style="font-weight: bold;">
             </ion-icon>
             <span style="font-weight: 550;">
@@ -205,19 +394,30 @@
             Variantes
           </ion-label>
           <div style="margin-top: 5px"></div>
-          
-          <ion-row style="font-size: 15px; font-weight: bold; color: #2c3357;">
+
+          <ion-row *ngIf="descripcionVisibleVariantes" style="font-size: 15px; font-weight: bold; color: #2c3357;">
             Combiná diferentes propiedades de tu producto. Ejemplo: color + tamaño.
           </ion-row>
+          <div *ngIf="!descripcionVisibleVariantes">
+            <ion-chip 
+              *ngFor="let chip of ionChipsVariantes" 
+              style="color: #2C3357; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              {{ chip }}
+              <ion-icon 
+                name="close" 
+                (click)="eliminarIonChipVariantes(chip)" 
+                style="color: #2C3357;">
+              </ion-icon>
+            </ion-chip>
+          </div>
           <div style="margin-top: 5px"></div>
 
-          <ion-button id="btnVariantes" (click)="abrirMenu()" style="--background: transparent; --ion-toolbar-background:#006bc8; --border-radius:100px; text-transform: none;">
+          <ion-button (click)="abrirMenu('menuVariantes')" style="--background: transparent; --ion-toolbar-background:#006bc8; --border-radius:100px; text-transform: none;">
             <ion-icon name="add-circle-outline" style="font-weight: bold;">
             </ion-icon>
             <span style="font-weight: 550;">
               Agregar variantes
             </span>
-
           </ion-button>
         </ion-card-content>
       </ion-card>

@@ -9,14 +9,12 @@ import { MenuController } from '@ionic/angular';
 })
 export class AgregarProductoPage implements OnInit {
 
-  constructor(private alerta:AlertController,private menu: MenuController) { }
+  constructor(private alerta:AlertController,private menu:MenuController) { }
 
   ngOnInit() {
   }
 
-  abrirMenu() {
-    this.menu.toggle('tuMenuId'); // Reemplaza 'tuMenuId' con el ID de tu ion-menu
-  }
+  //#region Fotos:
 
   openFileInput(id:string) {
     document.getElementById(id)?.click();
@@ -88,4 +86,139 @@ export class AgregarProductoPage implements OnInit {
     });
     await alert.present();
   }
+  //#endregion
+
+  //#region Menú:
+
+  abrirMenu(idMenu:string) {
+    this.menu.open(idMenu);
+  }
+
+  cerrarMenu(idMenu:string) {
+    this.menu.close(idMenu);
+  }
+  //#endregion
+
+  //#region Guardar Categoría, Color, Talle:
+
+  nuevaCategoria: string = '';
+  guardarCategoria(idEtiqueta:string) {
+    // Aquí puedes poner la lógica para guardar la categoría
+    console.log('Categoría guardada:', this.nuevaCategoria);
+    const div=document.getElementById(idEtiqueta);
+    if(div) {
+      div.style.display='none';
+      this.nuevaCategoria='';
+    }
+  }
+
+  nuevoColor: string = '';
+  guardarColor(idEtiqueta:string) {
+    // Aquí puedes poner la lógica para guardar la categoría
+    console.log('Color guardado:', this.nuevoColor);
+    const div=document.getElementById(idEtiqueta);
+    if(div) {
+      div.style.display='none';
+      this.nuevoColor='';
+    }
+  }
+
+  nuevaTalla: string = '';
+  guardarTalla(idEtiqueta:string) {
+    // Aquí puedes poner la lógica para guardar la categoría
+    console.log('Color guardado:', this.nuevaTalla);
+    const div=document.getElementById(idEtiqueta);
+    if(div) {
+      div.style.display='none';
+      this.nuevaTalla='';
+    }
+  }
+
+  mostrarEtiqueta(idEtiqueta:string) {
+    const etiqueta=document.getElementById(idEtiqueta);
+    if(etiqueta) {
+      etiqueta.style.display='block';
+    }
+  }
+  //#endregion
+
+  //#region IonChips de Categorías;
+
+  descripcionVisible = true;
+  ionChips: string[] = [];
+  checkboxState: { [key: string]: boolean } = {};
+
+  toggleCheckbox(item: string) {
+    // Verificar si la categoría ya está en la lista
+    if (!this.ionChips.includes(item)) {
+      // Agregar la categoría a la lista de ion-chips
+      this.ionChips.push(item);
+      // Marcar el checkbox como presionado
+      this.checkboxState[item] = true;
+      this.descripcionVisible = false;
+    } else {
+      // Si ya está en la lista, quitarla y marcar el checkbox como no presionado
+      this.eliminarIonChip(item);
+    }
+  }
+
+  isCheckboxChecked(item: string): boolean {
+    // Verificar el estado del checkbox
+    return this.checkboxState[item] || false;
+  }
+
+  eliminarIonChip(item: string) {
+    // Eliminar el ion-chip de la lista
+    this.ionChips = this.ionChips.filter(c => c !== item);
+    // Marcar el checkbox como no presionado
+    this.checkboxState[item] = false;
+    // Actualizar la visibilidad según la longitud de la lista
+    this.descripcionVisible = this.ionChips.length === 0;
+  }
+  //#endregion
+
+  //#region IonChips de Color y talla:
+
+  isItemSelected: boolean = false;
+  descripcionVisibleVariantes = true;
+  ionChipsVariantes: string[] = [];
+  checkboxStateVariantes: { [key: string]: boolean } = {};
+
+  toggleCheckboxVariantes(item: string) {
+    // Verificar si la categoría ya está en la lista
+    if (!this.ionChipsVariantes.includes(item)) {
+      // Agregar la categoría a la lista de ion-chips
+      this.ionChipsVariantes.push(item);
+      // Marcar el checkbox como presionado
+      this.checkboxStateVariantes[item] = true;
+      //this.descripcionVisibleVariantes = false;
+    } 
+    else {
+      // Si ya está en la lista, quitarla y marcar el checkbox como no presionado
+      this.eliminarIonChipVariantes(item);
+    }
+    // Verificar si hay algún elemento seleccionado en cualquiera de las listas
+    this.isItemSelected = this.ionChipsVariantes.length > 0;
+  }
+
+  isCheckboxCheckedVariantes(item: string): boolean {
+    // Verificar el estado del checkbox
+    return this.checkboxStateVariantes[item] || false;
+  }
+
+  eliminarIonChipVariantes(item: string) {
+    // Eliminar el ion-chip de la lista
+    this.ionChipsVariantes = this.ionChipsVariantes.filter(c => c !== item);
+    // Marcar el checkbox como no presionado
+    this.checkboxStateVariantes[item] = false;
+    // Actualizar la visibilidad según la longitud de la lista
+    //this.descripcionVisibleVariantes = this.ionChipsVariantes.length === 0;
+    // Verificar si hay algún elemento seleccionado en cualquiera de las listas
+    this.isItemSelected = this.ionChipsVariantes.length > 0;
+  }
+
+  crearVariante() {
+    
+  }
+  //#endregion
 }
