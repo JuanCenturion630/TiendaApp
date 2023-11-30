@@ -23,7 +23,7 @@
         </ion-row>
         <div style="margin-top: 5px;"></div>
         
-        <form [formGroup]="formCrearCuenta" (ngSubmit)="irARegistroFinalizado()">
+        <form [formGroup]="formCrearCuenta" (ngSubmit)="irAFuncionalidades()">
           <ion-card style="height: auto; --background:#ffffff; border: none; box-shadow: none;">
             <ion-card-content>
               <!--Nombre de usuario-->
@@ -127,13 +127,12 @@
               </div>
               <div style="margin-top: 15px;"></div>
 
-              <!--Botón para validar el formulario-->
+              <!--Botón "Crear tienda gratis"-->
               <ion-row>
                 <ion-button 
                   type="submit" 
                   [disabled]="!formCrearCuenta.valid"
-                  style="text-transform: none; width: 100vh; height: 50px; --border-radius: 100px; --background: #006bc8; --ion-toolbar-background: #ffffff;" 
-                  (click)="mostrarBarraDeCarga()">
+                  style="text-transform: none; width: 100vh; height: 50px; --border-radius: 100px; --background: #006bc8; --ion-toolbar-background: #ffffff;">
                   Crear tienda gratis
                 </ion-button>
               </ion-row>

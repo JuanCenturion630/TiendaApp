@@ -224,78 +224,152 @@
           </ion-label>
           <div style="margin-top: 5px"></div>
           <ion-row>
-
+            <!--Foto 1-->
             <ion-col>
-              <input type="file" accept="image/*" (change)="handleImageChange($event,'foto1','icono1','span1','borrarFoto1')" style="display: none;" id="fileInput1"/>
-              
-              <ion-button id="foto1" (click)="openFileInput('fileInput1')" style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
-                <ion-icon id="icono1" name="add-circle-outline" style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
+              <!--Input permite ingresar información al usuario, en este caso tipo "file" abre una ventana
+                  para que el usuario seleccione un archivo, limitado a imágenes por "image/*"
+              -->
+              <input 
+                id="fileInput1"
+                type="file" 
+                accept="image/*" 
+                (change)="leerImagen($event,'foto1','icono1','span1','borrarFoto1')" 
+                style="display: none;"
+              />
+              <ion-button 
+                id="foto1" 
+                (click)="ventanaSubirImagen('fileInput1')" 
+                style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
+                <ion-icon 
+                  id="icono1" 
+                  name="add-circle-outline" 
+                  style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
                 </ion-icon>
-                <span id="span1" style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
+                <span 
+                  id="span1" 
+                  style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
                   Vista de frente
                 </span>
               </ion-button>
-
-              <ion-button id="borrarFoto1" (click)="confirmarBorrarFoto('foto1','icono1','span1','borrarFoto1')" style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
-                <ion-icon name="trash" style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+              <ion-button 
+                id="borrarFoto1" 
+                (click)="confirmarBorrarFoto('foto1','icono1','span1','borrarFoto1')" 
+                style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
+                <ion-icon 
+                  name="trash" 
+                  style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 </ion-icon>
               </ion-button>
             </ion-col>
 
+            <!--Foto 2-->
             <ion-col>
-              <input type="file" accept="image/*" (change)="handleImageChange($event,'foto2','icono2','span2','borrarFoto2')" style="display: none;" id="fileInput2"/>
-              
-              <ion-button id="foto2" (click)="openFileInput('fileInput2')" style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
-                <ion-icon id="icono2" name="add-circle-outline" style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
+              <input
+                id="fileInput2" 
+                type="file" 
+                accept="image/*" 
+                (change)="leerImagen($event,'foto2','icono2','span2','borrarFoto2')" 
+                style="display: none;"
+              />
+              <ion-button 
+                id="foto2" 
+                (click)="ventanaSubirImagen('fileInput2')" 
+                style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
+                <ion-icon 
+                  id="icono2" 
+                  name="add-circle-outline" 
+                  style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
                 </ion-icon>
-                <span id="span2" style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
+                <span 
+                  id="span2" 
+                  style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
                   Vista izquierda
                 </span>
               </ion-button>
-
-              <ion-button id="borrarFoto2" (click)="confirmarBorrarFoto('foto2','icono2','span2','borrarFoto2')" style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
-                <ion-icon name="trash" style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+              <ion-button 
+                id="borrarFoto2" 
+                (click)="confirmarBorrarFoto('foto2','icono2','span2','borrarFoto2')" 
+                style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
+                <ion-icon 
+                  name="trash" 
+                  style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 </ion-icon>
               </ion-button>
             </ion-col>
 
+            <!--Foto 3-->
             <ion-col>
-              <input type="file" accept="image/*" (change)="handleImageChange($event,'foto3','icono3','span3','borrarFoto3')" style="display: none;" id="fileInput3"/>
-              
-              <ion-button id="foto3" (click)="openFileInput('fileInput3')" style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
-                <ion-icon id="icono3" name="add-circle-outline" style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
+              <input 
+                id="fileInput3"
+                type="file" 
+                accept="image/*" 
+                (change)="leerImagen($event,'foto3','icono3','span3','borrarFoto3')" 
+                style="display: none;"
+              />
+              <ion-button 
+                id="foto3" 
+                (click)="ventanaSubirImagen('fileInput3')" 
+                style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
+                <ion-icon 
+                  id="icono3" 
+                  name="add-circle-outline" 
+                  style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
                 </ion-icon>
-                <span id="span3" style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
+                <span 
+                  id="span3" 
+                  style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
                   Vista derecha
                 </span>
               </ion-button>
-
-              <ion-button id="borrarFoto3" (click)="confirmarBorrarFoto('foto3','icono3','span3','borrarFoto3')" style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
-                <ion-icon name="trash" style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+              <ion-button 
+                id="borrarFoto3" 
+                (click)="confirmarBorrarFoto('foto3','icono3','span3','borrarFoto3')" 
+                style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
+                <ion-icon 
+                  name="trash" 
+                  style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 </ion-icon>
               </ion-button>
             </ion-col>
 
+            <!--Foto 4-->
             <ion-col>
-              <input type="file" accept="image/*" (change)="handleImageChange($event,'foto4','icono4','span4','borrarFoto4')" style="display: none;" id="fileInput4"/>
-              
-              <ion-button id="foto4" (click)="openFileInput('fileInput4')" style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
-                <ion-icon id="icono4" name="add-circle-outline" style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
+              <input
+                id="fileInput4" 
+                type="file" 
+                accept="image/*" 
+                (change)="leerImagen($event,'foto4','icono4','span4','borrarFoto4')" 
+                style="display: none;"
+              />
+              <ion-button 
+                id="foto4" 
+                (click)="ventanaSubirImagen('fileInput4')" 
+                style="--background: #deeffe; height: 130px; width: 173px; border: 2px dashed #006bc8">
+                <ion-icon 
+                  id="icono4" 
+                  name="add-circle-outline" 
+                  style="font-size: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006bc8;">
                 </ion-icon>
-                <span id="span4" style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
+                <span 
+                  id="span4" 
+                  style="font-weight: bold; position: absolute; bottom: 0px; text-align: center; width: 100%; text-transform: none;">
                   Vista de atrás
                 </span>
               </ion-button>
-
-              <ion-button id="borrarFoto4" (click)="confirmarBorrarFoto('foto4','icono4','span4','borrarFoto4')" style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
-                <ion-icon name="trash" style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+              <ion-button 
+                id="borrarFoto4" 
+                (click)="confirmarBorrarFoto('foto4','icono4','span4','borrarFoto4')" 
+                style="position: absolute; top: 22%; left: 85%; transform: translate(-50%, -50%); z-index: 6; --background:#ffffff; --border-radius:150px; display: none;">
+                <ion-icon 
+                  name="trash" 
+                  style="font-size: 22px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 </ion-icon>
               </ion-button>
             </ion-col>
-
           </ion-row>
-
           <div style="margin-top: 5px"></div>
+          
+          <!--Recomendaciones para el usuario-->
           <ion-row>
             <ion-label style="border-radius: 150px; border: 1px solid #2C3357; padding-left: 5px; padding-right: 5px;">
               <ion-icon name="expand"></ion-icon>

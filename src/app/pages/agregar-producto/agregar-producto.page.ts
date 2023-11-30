@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 
@@ -7,62 +7,84 @@ import { MenuController } from '@ionic/angular';
   templateUrl: './agregar-producto.page.html',
   styleUrls: ['./agregar-producto.page.scss'],
 })
-export class AgregarProductoPage implements OnInit {
+export class AgregarProductoPage {
 
   constructor(private alerta:AlertController,private menu:MenuController) { }
 
-  ngOnInit() {
-  }
-
   //#region Fotos:
 
-  openFileInput(id:string) {
-    document.getElementById(id)?.click();
+  /**
+   * @function ventanaSubirImagen - sube una imagen al formulario a través de la etiqueta HTML input que abre una ventana emergente para seleccionar fotos.
+   * @param id - ID de la etiqueta input.
+   */
+  ventanaSubirImagen(id:string) {
+    document.getElementById(id)?.click(); //Crea un click automático en la etiqueta input para activarla desde un botón.
   }
 
-  handleImageChange(event: any, idBtn:string, idIcon:string, idSpan:string, idBtnBorrar:string) {
-    const fileInput = event.target;
-    const file = fileInput.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const imageURL = e.target.result;
-        const button = document.getElementById(idBtn);
-        const icon = document.getElementById(idIcon);
+  /**
+   * @function leerImagen - lee la imagen seleccionada por la venta emergente y la vuelve fondo de pantalla del botón.
+   * @param event - representa a la imagen seleccionada. 
+   * @param idBtn - ID de la etiqueta HTML ion-button que sube la imagen.
+   * @param idIcon - ID de la etiqueta HTML ion-icon del botón que sube imágenes.
+   * @param idSpan - ID de la etiqueta HTML span (texto) del botón que sube imágenes.
+   * @param idBtnBorrar - ID de la etiquea HTML ion-button que borra la imagen.
+   */
+  leerImagen(event: any, idBtn:string, idIcon:string, idSpan:string, idBtnBorrar:string) {
+    const imagen = event.target.files[0];
+    if (imagen) {
+      const leerImagen = new FileReader();
+      leerImagen.onload = (e: any) => {
+        const rutaImagen = e.target.result;
+        const btnSubir = document.getElementById(idBtn);
+        const icono = document.getElementById(idIcon);
         const span = document.getElementById(idSpan);
         const btnBorrar = document.getElementById(idBtnBorrar);
 
-        if (button&&icon&&span&&btnBorrar) {
-          //Debido a que el botón tenía previamente un color de fondo (celeste) es necesario volverlo transparente
-          //para poder insertar la imagen.
-          button.setAttribute('style', '--background: transparent; height: 130px; width: 173px;');
-          button.style.background = `url(${imageURL})`;
-          button.style.backgroundSize = 'cover'; // Ajusta según tus necesidades
-          icon.style.display='none';
-          span.style.display='none';
-          btnBorrar.style.display='block';
+        if (btnSubir&&icono&&span&&btnBorrar) { //Verifica que las etiquetas referenciadas existan.
+          /** Debido a que el botón tenía previamente un color de fondo (celeste) es necesario volverlo 
+           * transparente para poder insertar la imagen.
+           */
+          btnSubir.setAttribute('style', '--background: transparent; height: 130px; width: 173px;');
+          btnSubir.style.background = `url(${rutaImagen})`;
+          btnSubir.style.backgroundSize = 'cover'; //Ajusta el tamaño de la imagen.
+          icono.style.display='none'; //Vuelve invisible el icono de subir imagen al ya estar subida.
+          span.style.display='none'; //Vuelve invisible el texto de subir imagen al ya estar subida.
+          btnBorrar.style.display='block'; //Vuelve visible el botón de borrar imagen subida.
         }
       };
-      reader.readAsDataURL(file);
+      leerImagen.readAsDataURL(imagen);
     }
   }
 
+  /**
+   * @function borrarFoto
+   * @param idBtn - ID de la etiqueta HTML ion-button que sube la imagen.
+   * @param idIcono - ID de la etiqueta HTML ion-icon del botón que sube imágenes.
+   * @param idSpan - ID de la etiqueta HTML span (texto) del botón que sube imágenes.
+   * @param idBtnBorrar - ID de la etiqueta HTML ion-button que borra la imagen.
+   */
   borrarFoto(idBtn:string,idIcono:string,idSpan:string,idBtnBorrar:string) {
-    const button = document.getElementById(idBtn);
-    const icon = document.getElementById(idIcono);
+    const btnSubir = document.getElementById(idBtn);
+    const icono = document.getElementById(idIcono);
     const span = document.getElementById(idSpan);
     const btnBorrar = document.getElementById(idBtnBorrar);
 
-    if(button&&icon&&span&&btnBorrar) {
-      button.style.background = '#deeffe';
-      button.style.border='2px dashed #006bc8';
-      icon.style.display = 'block';
-      span.style.display = 'block';
-      btnBorrar.style.display = 'none';
+    if(btnSubir&&icono&&span&&btnBorrar) {
+      btnSubir.style.background = '#deeffe'; //Regresa al fondo de pantalla celeste para el botón.
+      btnSubir.style.border='2px dashed #006bc8'; //Regresa al borde azul punteado.
+      icono.style.display = 'block'; //Vuelve visible el icono de subir imagen.
+      span.style.display = 'block'; //Vuelve visible el texto de subir imagen.
+      btnBorrar.style.display = 'none'; //Oculta el botón de borrar imagen porque ya no hay una.
     }
   }
 
+  /**
+   * @function confirmarBorrarFoto - pregunta al usuario si desea borrar la foto subida.
+   * @param idBtn - ID del ion-button que subió la foto.
+   * @param idIcono - ID del icono de dicho botón.
+   * @param idSpan - ID del texto de dicho botón.
+   * @param idBtnBorrar - ID del botón que borra la foto.
+   */
   async confirmarBorrarFoto(idBtn:string,idIcono:string,idSpan:string,idBtnBorrar:string) {
     const alert = await this.alerta.create({
       header: '¿Querés eliminar esta foto?',
@@ -99,7 +121,7 @@ export class AgregarProductoPage implements OnInit {
   }
   //#endregion
 
-  //#region Guardar Categoría, Color, Talle:
+  //#region Crear Categoría, Color, Talle:
 
   nuevaCategoria: string = '';
   guardarCategoria(idEtiqueta:string) {
@@ -221,4 +243,8 @@ export class AgregarProductoPage implements OnInit {
     
   }
   //#endregion
+
+  crearProducto() {
+    
+  }
 }
