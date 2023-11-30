@@ -28,18 +28,23 @@
             <ion-input style="font-size: 15px; font-weight: bold; color: #4b5fa0;" placeholder="contraseña">
             </ion-input>
             <div style="margin-top: 15px;"></div>
-            <ion-checkbox style="font-size: 15px; font-weight: bold; margin: auto; text-align: center; display: flex; flex-direction: column; align-items: center; --checkbox-background: #ffffff; --border-color: #494b4d;" labelPlacement="start">
+            <ion-checkbox disabled 
+              style="font-size: 15px; font-weight: bold; margin: auto; text-align: center; display: flex; flex-direction: column; align-items: center; --checkbox-background: #ffffff; --border-color: #494b4d;" labelPlacement="start">
               Recordarme
             </ion-checkbox>
             <div style="margin-top: 20px;"></div>
             <ion-row>
-              <ion-button (click)="irAFuncionalidades()" style="text-transform: none; width: 100vh; height: 50px; --border-radius: 100px; --background: #006bc8; --ion-toolbar-background: #ffffff;">
+              <ion-button 
+                (click)="irAFuncionalidades()" 
+                style="text-transform: none; width: 100vh; height: 50px; --border-radius: 100px; --background: #006bc8; --ion-toolbar-background: #ffffff;">
                 Ingresar
               </ion-button>
             </ion-row>
           </ion-card-content>
           <ion-card-content>
-            <ion-button (click)="irAOlvidePassword()" style="font-size: 15px; --box-shadow: none; text-transform: none; width: auto; --background: transparent; --ion-toolbar-background: #00427c; text-align: center; display: flex; flex-direction: column; align-items: center;">
+            <ion-button disabled 
+              (click)="irAOlvidePassword()" 
+              style="font-size: 15px; --box-shadow: none; text-transform: none; width: auto; --background: transparent; --ion-toolbar-background: #00427c; text-align: center; display: flex; flex-direction: column; align-items: center;">
               ¿Te olvidaste tu contraseña?
             </ion-button>
             <ion-row style="font-size: 15px; color: #494b4d; text-align: center; display: flex; flex-direction: column; align-items: center;">
