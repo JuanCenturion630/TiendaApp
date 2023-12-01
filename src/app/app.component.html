@@ -13,8 +13,13 @@
       <ion-button fill="outline" style="height: 40px; font-size: 14px; text-transform: none;">
         Funcionalidades
       </ion-button>
-      <ion-button (click)="irALogin()" fill="outline" slot="end" style="height: 40px; font-size: 14px; text-transform: none;">
+      <ion-button *ngIf="!loginExitosoRecibido" (click)="irALogin()" fill="outline" slot="end" style="height: 40px; font-size: 14px; text-transform: none;">
+        <ion-icon name="person" slot="start"></ion-icon>
         Iniciar sesión
+      </ion-button>
+      <ion-button id="botonLogout" *ngIf="loginExitosoRecibido" (click)="cerrarSesion()" fill="outline" slot="end" style="height: 40px; font-size: 14px; text-transform: none;">
+        <ion-icon name="log-out" slot="start"></ion-icon>
+        Cerrar sesión
       </ion-button>
     </ion-toolbar>
   </ion-header>

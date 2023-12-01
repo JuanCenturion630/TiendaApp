@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,9 @@ import { Router, NavigationEnd } from '@angular/router';
 
 export class AppComponent {
   paginaActual!: string;
+  loginExitosoRecibido:any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private auth:AuthService) {
     //Evalúa el cambio entre página y si se realiza con éxito llama al método "quitarParametrosDeURL()".
     this.router.events.subscribe((event) => { 
       if (event instanceof NavigationEnd) {
@@ -26,6 +28,7 @@ export class AppComponent {
    * @returns devuelve la URL de la página actual, pero sin los parámetros.
    */
   private quitarParametrosDeURL(url: string): string {
+    this.loginExitosoRecibido=this.auth.obtenerResultadoSesion();
     const urlSinParam = url.split('?'); //Solo toma el url hasta encontrarse con "?"
     return urlSinParam[0];
   }
@@ -37,7 +40,26 @@ export class AppComponent {
     this.router.navigate(['/login']);
   }
 
+  /**
+   * @function irAHome - lleva a la página de inicio.
+   */
   irAHome() {
     this.router.navigate(['/home']);
+  }
+
+  /**
+   * @function cerrarSesion - cierra la conexión con el servidor y borra los datos locales asociados.
+   */
+  cerrarSesion() {
+    this.auth.cerrarSesion().subscribe({
+      next: (r) => {
+        this.loginExitosoRecibido=false;
+        this.router.navigate(['/home']);
+        document.getElementById('botonLogout')?.click(); //Se presiona el botón como parche porque fue la única opción que sirvió para cambiar el nombre.
+      },
+      error: (e) => {
+        console.log("Error al cerrar sesión");
+      }
+    })
   }
 }

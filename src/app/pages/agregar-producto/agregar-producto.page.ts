@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductoService } from 'src/app/services/producto.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -20,7 +21,7 @@ export class AgregarProductoPage {
   formProducto: FormGroup; //Formulario reactivo.
   constructor(private parametrosForm:FormBuilder, private alerta:AlertController,private menu:MenuController,
     private categoria:CategoriaService, private color:ColorService, private talla:TalleService, 
-    private producto:ProductoService, auth:AuthService,private router:Router) {
+    private producto:ProductoService, auth:AuthService,private router:Router,private toast:ToastController) {
     
     this.formProducto = this.parametrosForm.group({
       nombreProducto: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/), Validators.maxLength(100)]], //Valida que el campo sea obligatorio, solo acepte alfanumérico y máximo 100 caracteres.
@@ -35,7 +36,7 @@ export class AgregarProductoPage {
 
     this.sesion=auth.obtenerResultadoSesion();
     console.log("Sesión: ",this.sesion);
-    console.log("idTienda",this.sesion.stores[0].id);
+    console.log("idTienda: ",this.sesion.stores[0].id);
     this.cargarCategorias();
     this.cargarColores();
     this.cargarTallas();
@@ -51,6 +52,7 @@ export class AgregarProductoPage {
     document.getElementById(id)?.click(); //Crea un click automático en la etiqueta input para activarla desde un botón.
   }
 
+  rutaImagen:string='';
   /**
    * @function leerImagen - lee la imagen seleccionada por la venta emergente y la vuelve fondo de pantalla del botón.
    * @param event - representa a la imagen seleccionada. 
@@ -80,6 +82,9 @@ export class AgregarProductoPage {
           icono.style.display='none'; //Vuelve invisible el icono de subir imagen al ya estar subida.
           span.style.display='none'; //Vuelve invisible el texto de subir imagen al ya estar subida.
           btnBorrar.style.display='block'; //Vuelve visible el botón de borrar imagen subida.
+          if(idBtn=='foto1') {
+            this.rutaImagen=rutaImagen; //Guardo la ruta de la imagen principal para estilizar el cuadro de producto por variantes.
+          }
         }
       };
       leerImagen.readAsDataURL(imagen);
@@ -273,6 +278,18 @@ export class AgregarProductoPage {
     this.descripcionCategoria = Object.keys(this.ionChipCategoria).length === 0; //Devolver la visibilidad a la descripción si no hay ion-chips.
   }*/
   //#endregion
+
+  estaSeleccionado:boolean=false; //Verifica si color o talle está seleccionado en el menú variantes.
+  /**
+   * @function mostrarEtiquetaOculta - vuelve visible las etiquetas ocultas.
+   * @param idEtiqueta - ID de la etiqueta a visibilizar.
+   */
+  mostrarEtiquetaOculta(idEtiqueta:string) {
+    const etiqueta=document.getElementById(idEtiqueta);
+    if(etiqueta) {
+      etiqueta.style.display='block';
+    }
+  }
 
   //#region Menú Variante.Color:
 
@@ -484,27 +501,63 @@ export class AgregarProductoPage {
     }
   }
   //#endregion
+  
+  //#region Ion-Card Variantes:
 
-  estaSeleccionado:boolean=false; //Verifica si color o talle está seleccionado en el menú variantes.
-  productoVarianteCreado:boolean=false; //Verifica si se creó o no un producto con variante.
+  variantes: any[] = [];
+  productoVarianteCreado:boolean=false; //Regula la visibilidad del cuadro de variantes en detalle.
   /**
    * @function crearVariante - crea un producto con color y/o talla.
    */
   crearVariante() {
-    this.productoVarianteCreado=true;
-    var productosVariantes:any[]=[];
+    if (this.formProducto.valid) { //Si el formulario está validado entonces...
+      const datos=this.formProducto.value; //Guardo los datos validados.
+      const nuevaVariante = {
+        nombre: datos.nombreProducto,
+        stock: datos.stockProducto,
+        precio: datos.precioProducto,
+        color: this.ionChipColor,
+        talla: this.ionChipTalla,
+      };
+      this.variantes.push(nuevaVariante);
+      this.productoVarianteCreado=true;
+    }
+    else {
+      this.crearVarianteFallo();
+    }
+  }
+  
+  /**
+   * @function borrarVariante - borra una variante del producto.
+   * @param variante - mismo producto, pero con diferente stock, color y talla.
+   */
+  borrarVariante(variante: any) {
+    const index = this.variantes.indexOf(variante); //Obtiene el índice de la variante en el vector de variantes.
+    if (index !== -1) { //Si el índice es mayor a -1 significa que se encontró una coincidencia.
+      this.variantes.splice(index, 1); //Elimina la variante con su índice.
+      if(this.variantes.length==0) { //Si las variantes ya son 0 estado pasa a false, ocultando la vista de variantes.
+        this.productoVarianteCreado=false;
+      }
+    }
   }
 
   /**
-   * @function mostrarEtiquetaOculta - vuelve visible las etiquetas ocultas.
-   * @param idEtiqueta - ID de la etiqueta a visibilizar.
+   * @function registroFallido - crea un cartel en el centro de la pantalla notificando un error al crear variante.
+   * @param mensaje - mensaje de error que se le muestra al usuario.
    */
-  mostrarEtiquetaOculta(idEtiqueta:string) {
-    const etiqueta=document.getElementById(idEtiqueta);
-    if(etiqueta) {
-      etiqueta.style.display='block';
-    }
+  async crearVarianteFallo() {
+    const cartel = await this.toast.create({
+      message: 'Debe rellenar todos los campos antes de crear una variante de algún producto.',
+      duration: 5000,
+      position: 'middle',
+      color: 'danger',
+      icon: 'warning-outline',
+    });
+    cartel.present();
   }
+  //#endregion
+
+  //#region Botón Guardar cambios/Cancelar:
 
   /**
    * @function crearProducto - inserta un producto en la base de datos.
@@ -512,12 +565,15 @@ export class AgregarProductoPage {
   crearProducto() {
     if (this.formProducto.valid) { //Si el formulario está validado entonces...
       const datos=this.formProducto.value; //Guardo los datos validados.
-      var fotos:File[]=[];
+      var fotos:FormData[]=[];
+
+      /*
       fotos.push(datos.fotoProducto1);
       fotos.push(datos.fotoProducto2);
       fotos.push(datos.fotoProducto3);
       fotos.push(datos.fotoProducto4);
-      
+      */
+
       console.log("nombreProducto: ",datos.nombreProducto);
       console.log("descripcionProducto: ",datos.descripcionProducto);
       console.log("idTienda: ",this.sesion.stores[0].id);
@@ -540,6 +596,7 @@ export class AgregarProductoPage {
         undefined).subscribe({
         next: (r) => {
           console.log("Producto creado: ",r);
+          this.router.navigate(['/agregar-producto']);
         },
         error: (e) => {
           console.log("No se pudo crear el producto.");
@@ -554,4 +611,5 @@ export class AgregarProductoPage {
   irAFuncionalidades() {
     this.router.navigate(['/funcionalidades']);
   }
+  //#endregion
 }

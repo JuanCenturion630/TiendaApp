@@ -42,10 +42,17 @@
                 Ingresá tu contraseña
               </ion-label>
               <ion-input 
+                type="{{typeOcultar}}"
                 formControlName="password" 
                 style="font-size: 15px; font-weight: bold; color: #4b5fa0; border: 1px solid #4b5fa0; border-radius: 12px; --padding-start: 5px;" 
                 placeholder="contraseña">
               </ion-input>
+              <ion-button 
+                (click)="ocultarPassword()"
+                style="--border-radius:100px; --background:transparent; position: absolute; top: 44%; left: 86%; transform: translate(-50%, -50%); z-index: 2; --box-shadow: none;">
+                <ion-icon name="{{iconOcultar}}">
+                </ion-icon>
+              </ion-button>
               <div
                 style="color: red;"  
                 *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched">

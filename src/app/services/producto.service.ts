@@ -45,7 +45,7 @@ export class ProductoService {
    * @param description {string} - descripcion del producto nuevo. Requerido.
    * @param price {string} - precio del producto nuevo. Tiene que ser un string, el backend se encarga de convertirlo. Requerido.
    * @param storeId {number} - ID de la tienda en donde desea crear el producto nuevo. Requerido.
-   * @param photos {File[]} - vector con las fotos del producto nuevo. No estoy seguro si tiene que ser del tipo 
+   * @param photos {FormData[]} - vector con las fotos del producto nuevo. No estoy seguro si tiene que ser del tipo 
    * File. Hay que ir probando. Requerido. No puede ser nulo pero si lo mandas como un vector vacio [], te crea
    * el producto pero sin fotos.
    * @param categoriesName {string[]} - Nombres de las categorias del nuevo producto. Requerido.
@@ -60,7 +60,7 @@ export class ProductoService {
    * @returns Observable<any>: any: Ver documentacion de endpoints.
    */
   crearProducto(name: string, description: string, price: string, storeId: number, 
-    photos: File[], categoriesName: string[], 
+    photos: FormData[], categoriesName: string[], 
     stock?: number, 
     colors?: {stock: number, colorName: string}[], 
     sizes?: {stock: number, sizeName: string}[]): Observable<any>{
@@ -83,7 +83,6 @@ export class ProductoService {
     let token = this.auth.getToken();
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
     });
     return this.http.post<any>(this.url, producto, {headers});
   }

@@ -13,7 +13,8 @@ import { AlertController } from '@ionic/angular';
 export class LoginPage {
 
   formLogin: FormGroup; //Formulario reactivo.
-  constructor(private router:Router, private parametrosForm:FormBuilder, private cuenta:AuthService, private toast:ToastController,private alerta:AlertController) { 
+  constructor(private router:Router, private parametrosForm:FormBuilder, private cuenta:AuthService, 
+    private toast:ToastController,private alerta:AlertController) { 
     this.formLogin = this.parametrosForm.group({
       email: ['', [Validators.required, Validators.email]], //Valida el formato de correo electrónico.
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50)]], //Valida que el campo tenga mínimo 8 caracteres y máximo 50.
@@ -42,6 +43,7 @@ export class LoginPage {
           this.registroExitoso(); //Invoco un toast indicando el éxito en la operación.
           this.router.navigate(['/funcionalidades']); //Voy a página "funcionalidades".
           flujoNormal=true;
+          this.enviarLoginExitoso();
         },
         error: (e) => {
           console.log("Error: ",e);
@@ -65,6 +67,31 @@ export class LoginPage {
       });
     } else {
       console.log('Formulario no válido.');
+    }
+  }
+
+  loginExitoso:boolean=false;
+  /**
+   * @function enviarLoginExitoso - registra el estado del login y lo envía a app.componente.page para 
+   * @returns 
+   */
+  enviarLoginExitoso() {
+    return this.loginExitoso=true;
+  }
+
+  typeOcultar:string='password';
+  iconOcultar:string='eye-off';
+  /**
+   * @function ocultarPassword - cambia la visibilidad de la contraseña en pantalla.
+   */
+  ocultarPassword() {
+    if(this.typeOcultar=='') {
+      this.typeOcultar='password';
+      this.iconOcultar='eye-off';
+    }
+    else {
+      this.typeOcultar='';
+      this.iconOcultar='eye';
     }
   }
 
