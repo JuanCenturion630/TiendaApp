@@ -64,7 +64,7 @@
       <div *ngIf="!errorCargarCategorias">
         <ion-item 
           *ngFor="let cat of listaCategorias" 
-          (click)="crearIonChipCategoria(cat.id,cat.nom)" 
+          (click)="crearIonChipCategoria(cat.name)" 
           style="width: 100%; --padding-start:0px;">
           <ion-label style="color:#2C3357; margin-left: 8px;">
             {{cat.name}}
@@ -345,7 +345,12 @@
           <div
             style="color: red;" 
             *ngIf="formProducto.get('nombreProducto')?.hasError('pattern') && formProducto.get('nombreProducto')?.touched">
-            *El nombre del producto solo puede ser alfanumérico de máximo 50 caracteres.
+            *El nombre del producto solo puede ser alfanumérico.
+          </div>
+          <div
+            style="color: red;" 
+            *ngIf="formProducto.get('nombreProducto')?.hasError('maxlength') && formProducto.get('nombreProducto')?.touched">
+            *El nombre del producto solo puede contener 100 caracteres.
           </div>
           <div style="margin-top: 5px"></div>
 
@@ -628,12 +633,12 @@
           <!--Ion-chips-->
           <div *ngIf="!descripcionCategoria">
             <ion-chip 
-              *ngFor="let chip of ionChipCategoria" 
+              *ngFor="let chip of ionChipCategorias" 
               style="color: #2C3357; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
               {{chip}}
               <ion-icon 
                 name="close" 
-                (click)="eliminarIonChipCategoria(chip.id)" 
+                (click)="eliminarIonChipCategoria(chip)" 
                 style="color: #2C3357;">
               </ion-icon>
             </ion-chip>
@@ -759,7 +764,9 @@
       <div style="margin-top: 8px;"></div>
 
       <!--Botón "Cancelar"-->
-      <ion-button style="top: 99%; margin-left: 59%; --border-radius: 10px; --background: transparent; --ion-toolbar-background:#2c3357; text-transform: none; font-weight: bold;">
+      <ion-button 
+        (click)="irAFuncionalidades()" 
+        style="top: 99%; margin-left: 59%; --border-radius: 10px; --background: transparent; --ion-toolbar-background:#2c3357; text-transform: none; font-weight: bold;">
         Cancelar
       </ion-button>
 

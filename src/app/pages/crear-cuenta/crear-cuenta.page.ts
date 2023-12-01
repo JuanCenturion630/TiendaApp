@@ -17,9 +17,9 @@ export class CrearCuentaPage {
     this.formCrearCuenta = this.parametrosForm.group({
       nombreUsuario: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{1,50}$/)]], //Valida que el campo sea alfanumérico ([a-zA-Z0-9]) y que tenga entre 1 a 50 carácteres {1,50}.
       email: ['', [Validators.required, Validators.email]], //Valida el formato de correo electrónico.
-      password: ['', [Validators.required, Validators.maxLength(50)]], //Valida que el campo tenga máximo 50 caracteres.
-      nombreMarca: ['', [Validators.required, Validators.maxLength(20)]], //Valida que el campo tenga máximo 20 caracteres.
-      telefono: ['', [Validators.pattern(/^[0-9]{11}$/)]], //Valida que el campo tenga solo números y máximo 11. Es opcional, así que no tiene "Validators.required" que lo volvería obligatorio.
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50)]], //Valida que el campo tenga mínimo 8 caracteres y máximo 50.
+      nombreMarca: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]], //Valida que el campo tenga mínimo 5 caracteres y máximo 20.
+      telefono: ['', [Validators.pattern(/^[0-9]{10,15}$/)]], //Valida que el campo tenga solo números y los caracteres de 10 a 15. Es opcional, así que no tiene "Validators.required" que lo volvería obligatorio.
       aceptoTerminos: [false, Validators.requiredTrue], //Valida que este botón esté presionado.
     });
   }

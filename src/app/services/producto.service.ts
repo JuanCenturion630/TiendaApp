@@ -48,22 +48,22 @@ export class ProductoService {
    * @param photos {File[]} - vector con las fotos del producto nuevo. No estoy seguro si tiene que ser del tipo 
    * File. Hay que ir probando. Requerido. No puede ser nulo pero si lo mandas como un vector vacio [], te crea
    * el producto pero sin fotos.
-   * @param categoriesId {number[]} - IDs de las categorias del nuevo producto. Requerido.
+   * @param categoriesName {string[]} - Nombres de las categorias del nuevo producto. Requerido.
    * @param stock {number} - Stock del nuevo producto. Opcional. Si el producto tiene variantes (talles y/o colores),
    * este stock debería de ser null pero si lo mandas con un valor, no daría error.
-   * @param colors { {stock: number, colorId: number}[] } - Colores del nuevo producto. Opcional. Si no tendra
+   * @param colors { {stock: number, colorName: string}[] } - Colores del nuevo producto. Opcional. Si no tendra
    * colores el nuevo producto, mandarlo como null. Cada elemento tiene stock (el stock de ese color de producto)
-   * y colorId (ID del color).
-   * @param sizes { {stock: number, sizeId: number}[] } - Talles del nuevo producto. Opcional. Si no tendra
+   * y colorName (Nombre del color).
+   * @param sizes { {stock: number, sizeName: string}[] } - Talles del nuevo producto. Opcional. Si no tendra
    * talles el nuevo producto, mandarlo como null. Cada elemento tiene stock (el stock de ese talle de producto)
-   * y sizeId (ID del talle).
+   * y sizeName (Nombre del talle).
    * @returns Observable<any>: any: Ver documentacion de endpoints.
    */
   crearProducto(name: string, description: string, price: string, storeId: number, 
-    photos: File[], categoriesId: number[], 
+    photos: File[], categoriesName: string[], 
     stock?: number, 
-    colors?: {stock: number, colorId: number}[], 
-    sizes?: {stock: number, sizeId: number}[]): Observable<any>{
+    colors?: {stock: number, colorName: string}[], 
+    sizes?: {stock: number, sizeName: string}[]): Observable<any>{
     if(!photos){
       photos = [];
     }
@@ -74,7 +74,7 @@ export class ProductoService {
       "price": price,
       "storeId": storeId,
       "photos": photos,
-      "categoriesId": categoriesId,
+      "categoriesName": categoriesName,
       "stock": stock,
       "colors": colors,
       "sizes": sizes

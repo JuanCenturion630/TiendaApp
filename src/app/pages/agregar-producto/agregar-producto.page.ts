@@ -7,6 +7,7 @@ import { TalleService } from 'src/app/services/talle.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductoService } from 'src/app/services/producto.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -15,19 +16,26 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AgregarProductoPage {
 
+  sesion:any;
   formProducto: FormGroup; //Formulario reactivo.
-  constructor(private parametrosForm:FormBuilder, private alerta:AlertController,private menu:MenuController,private categoria:CategoriaService, private color:ColorService, private talla:TalleService, private producto:ProductoService, auth:AuthService) {
+  constructor(private parametrosForm:FormBuilder, private alerta:AlertController,private menu:MenuController,
+    private categoria:CategoriaService, private color:ColorService, private talla:TalleService, 
+    private producto:ProductoService, auth:AuthService,private router:Router) {
+    
     this.formProducto = this.parametrosForm.group({
-      nombreProducto: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{1,50}$/)], Validators.maxLength(100)], //Valida que el campo sea obligatorio, solo acepte alfanumérico y máximo 100 caracteres.
+      nombreProducto: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/), Validators.maxLength(100)]], //Valida que el campo sea obligatorio, solo acepte alfanumérico y máximo 100 caracteres.
       descripcionProducto: ['', [Validators.required, Validators.maxLength(500)]], //Valida que el campo sea obligatorio y tenga máximo 500 caracteres.
       fotoProducto1: [''],
       fotoProducto2: [''],
       fotoProducto3: [''],
       fotoProducto4: [''],
-      precioProducto: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]], //Valida que el campo sea obligatorio, que solo acepte números y tenga máximo 10 caracteres.
-      stockProducto: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]], //Valida que el campo sea obligatorio y que solo acepte números..
+      precioProducto: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]], //Valida que el campo sea obligatorio, que solo acepte números y tenga máximo 10 caracteres.
+      stockProducto: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]], //Valida que el campo sea obligatorio, que solo acepte números y que tenga máximo 6 caracteres.
     });
 
+    this.sesion=auth.obtenerResultadoSesion();
+    console.log("Sesión: ",this.sesion);
+    console.log("idTienda",this.sesion.stores[0].id);
     this.cargarCategorias();
     this.cargarColores();
     this.cargarTallas();
@@ -97,6 +105,21 @@ export class AgregarProductoPage {
       icono.style.display = 'block'; //Vuelve visible el icono de subir imagen.
       span.style.display = 'block'; //Vuelve visible el texto de subir imagen.
       btnBorrar.style.display = 'none'; //Oculta el botón de borrar imagen porque ya no hay una.
+
+      switch(idBtn) { //Reinicia los formControlName del formulario reactivo.
+        case 'foto1':
+          this.formProducto.get('fotoProducto1')?.setValue('');
+          break;
+        case 'foto1':
+          this.formProducto.get('fotoProducto2')?.setValue('');
+          break;
+        case 'foto1':
+          this.formProducto.get('fotoProducto3')?.setValue('');
+          break;
+        case 'foto1':
+          this.formProducto.get('fotoProducto4')?.setValue('');
+          break;
+      }
     }
   }
 
@@ -199,23 +222,24 @@ export class AgregarProductoPage {
   }
 
   descripcionCategoria = true; //Descripción del cuadro que agrega categorías.
-  ionChipCategoria: { [id: string]: string } = {}; //ion-chips (ID y nombre) que se crean en función de las categorías seleccionadas.
+  ionChipCategorias: string[]=[];
+  //ionChipCategoria: { [id: string]: string } = {}; //ion-chips (ID y nombre) que se crean en función de las categorías seleccionadas.
   checkboxCategoria: { [key: string]: boolean } = {}; //Estado de los checkBox que están en la lista de categorías.
 
   /**
    * @function crearIonChipCategoria - crea un ion-chip según la categoría seleccionada.
    * @param categoriaSeleccionada - categoría seleccionada de la lista. 
    */
-  /*crearIonChipCategoria(categoriaSeleccionada: string, categoriaSeleccionadaID:string) {
-    if (!this.ionChipCategoria.includes(categoriaSeleccionada)) { //Verificar si la categoría seleccionada está en la lista de ion-chips.
-      this.ionChipCategoria.push(categoriaSeleccionada); //Agregar la categoría a los ion-chips.
+  crearIonChipCategoria(categoriaSeleccionada: string) {
+    if (!this.ionChipCategorias.includes(categoriaSeleccionada)) { //Verificar si la categoría seleccionada está en la lista de ion-chips.
+      this.ionChipCategorias.push(categoriaSeleccionada); //Agregar la categoría a los ion-chips.
       this.checkboxCategoria[categoriaSeleccionada] = true; //Marcar el checkbox de la categoría seleccionada como presionado.
       this.descripcionCategoria = false; //La descripción del cuadro categorías se oculta. 
     } else { //Si la categoría seleccionada ya está en los ion-chips, quitarla y marcar el checkbox como no presionado.
       this.eliminarIonChipCategoria(categoriaSeleccionada);
     }
-  }*/
-  crearIonChipCategoria(categoriaSeleccionadaID: string, categoriaSeleccionada: string) {
+  }
+  /*crearIonChipCategoria(categoriaSeleccionadaID: string, categoriaSeleccionada: string) {
     if (!this.ionChipCategoria[categoriaSeleccionadaID]) { //Verificar si la categoría seleccionada está en la lista de ion-chips.
       this.ionChipCategoria[categoriaSeleccionadaID] = categoriaSeleccionada; //Agregar categoría a la lista de ion-chips usando el ID como clave y el nombre como valor.
       this.checkboxCategoria[categoriaSeleccionadaID] = true; //Marcar el checkbox de la categoría seleccionada como presionado.
@@ -223,7 +247,7 @@ export class AgregarProductoPage {
     } else { //Si la categoría seleccionada ya está en los ion-chips, quitarla y marcar el checkbox como no presionado.
       this.eliminarIonChipCategoria(categoriaSeleccionadaID);
     }
-  }
+  }*/
 
   /**
    * @function checkboxCategoriaEstado - guarda el estado del checkbox presionado.
@@ -238,16 +262,16 @@ export class AgregarProductoPage {
    * @function eliminarIonChipCategoria - elimina los ion-chips creados.
    * @param categoriaSeleccionada
    */
-  /*eliminarIonChipCategoria(categoriaSeleccionada: string) {
-    this.ionChipCategoria = this.ionChipCategoria.filter(c => c != categoriaSeleccionada); //Borra el ion-chip de una categoría.
+  eliminarIonChipCategoria(categoriaSeleccionada: string) {
+    this.ionChipCategorias = this.ionChipCategorias.filter(c => c != categoriaSeleccionada); //Borra el ion-chip de una categoría.
     this.checkboxCategoria[categoriaSeleccionada] = false; //Marcar el checkbox como no presionado.
-    this.descripcionCategoria = this.ionChipCategoria.length == 0; //Si todos los ion-chips son borrados, devolver la visibilidad a la descripción.
-  }*/
-  eliminarIonChipCategoria(categoriaSeleccionadaID: string) {
+    this.descripcionCategoria = this.ionChipCategorias.length == 0; //Si todos los ion-chips son borrados, devolver la visibilidad a la descripción.
+  }
+  /*eliminarIonChipCategoria(categoriaSeleccionadaID: string) {
     delete this.ionChipCategoria[categoriaSeleccionadaID]; //Borra el ion-chip de una categoría por ID.
     this.checkboxCategoria[categoriaSeleccionadaID] = false; //Marcar el checkbox como no presionado.
     this.descripcionCategoria = Object.keys(this.ionChipCategoria).length === 0; //Devolver la visibilidad a la descripción si no hay ion-chips.
-  }
+  }*/
   //#endregion
 
   //#region Menú Variante.Color:
@@ -493,14 +517,41 @@ export class AgregarProductoPage {
       fotos.push(datos.fotoProducto2);
       fotos.push(datos.fotoProducto3);
       fotos.push(datos.fotoProducto4);
-      /*this.producto.crearProducto(datos.nombreProducto,datos.descripcionProducto,datos.precioProducto,this.idUsuario,fotos,).subscribe({
-        next: (e) => {
+      
+      console.log("nombreProducto: ",datos.nombreProducto);
+      console.log("descripcionProducto: ",datos.descripcionProducto);
+      console.log("idTienda: ",this.sesion.stores[0].id);
+      console.log("foto 1: ",fotos[0]);
+      console.log("foto 2: ",fotos[1]);
+      console.log("foto 3: ",fotos[2]);
+      console.log("foto 4: ",fotos[3]);
+      console.log("categoría: ",this.ionChipCategorias);
+      console.log("stock: ",datos.stockProducto);
 
+      this.producto.crearProducto(
+        datos.nombreProducto,
+        datos.descripcionProducto,
+        datos.precioProducto,
+        this.sesion.stores[0].id,
+        fotos,
+        this.ionChipCategorias,
+        datos.stockProducto,
+        undefined,
+        undefined).subscribe({
+        next: (r) => {
+          console.log("Producto creado: ",r);
         },
         error: (e) => {
-
+          console.log("No se pudo crear el producto.");
         }
-      })*/
+      })
     }
+  }
+
+  /**
+   * @function irAFuncionalidades - redirige a la página de funcionalidades.
+   */
+  irAFuncionalidades() {
+    this.router.navigate(['/funcionalidades']);
   }
 }

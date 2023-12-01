@@ -10,6 +10,7 @@ export class AuthService {
   private token: string = '';
 
   constructor(private http: HttpClient) { }
+  private resultadoSesion: any; //Variable para almacenar los datos de sesión.
 
   /**
    * @function iniciarSesion - Permite inicar sesion al usuario y guardar el token en localstorage.
@@ -23,8 +24,20 @@ export class AuthService {
       "password": password
     }
     return this.http.post<any>(this.url + "/auth/login", credenciales).pipe(
-      tap(respuesta => this.guardarToken(respuesta.token)));;
+      tap(respuesta => {
+        this.guardarToken(respuesta.token);
+        this.resultadoSesion=respuesta; //Guarda el objeto respuesta, con la propiedad idTienda.
+      })
+    );
   }
+
+  /**
+   * @function obtenerResultadoSesion - setter para enviar el objeto resultadoSesión a otras páginas.
+   */
+  obtenerResultadoSesion(): any {
+    return this.resultadoSesion;
+  }
+
 
   /**
    * @function registrar - Permite crear un usuario nuevo y ya le inicia la sesion automaticamente. Tambien
@@ -45,7 +58,11 @@ export class AuthService {
       "phone": phone
     }
     return this.http.post<any>(this.url + "/auth/register", user).pipe(
-      tap(respuesta => this.guardarToken(respuesta.token)));
+      tap(respuesta => {
+        this.guardarToken(respuesta.token);
+        this.resultadoSesion=respuesta; //Guarda el objeto respuesta, con la propiedad idTienda.
+      })
+    );
   }
 
   /**

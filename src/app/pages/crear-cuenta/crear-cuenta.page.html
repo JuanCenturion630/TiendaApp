@@ -81,6 +81,16 @@
                 *ngIf="formCrearCuenta.get('password')?.hasError('required') && formCrearCuenta.get('password')?.touched">
                 *La contraseña es obligatoria.
               </div>
+              <div
+                style="color: red;"  
+                *ngIf="formCrearCuenta.get('password')?.hasError('minlength') && formCrearCuenta.get('password')?.touched">
+                *La contraseña debe tener mínimo 8 caracteres.
+              </div>
+              <div
+                style="color: red;"  
+                *ngIf="formCrearCuenta.get('password')?.hasError('maxlength') && formCrearCuenta.get('password')?.touched">
+                *La contraseña debe tener máximo 50 caracteres.
+              </div>
 
               <!--Nombre de tu marca-->
               <ion-label style="font-size: 15px; font-weight: bold; color: #2c3357;">
@@ -96,6 +106,16 @@
                 *ngIf="formCrearCuenta.get('nombreMarca')?.hasError('required') && formCrearCuenta.get('nombreMarca')?.touched">
                 *El nombre de tu marca es obligatorio.
               </div>
+              <div 
+                style="color: red;" 
+                *ngIf="formCrearCuenta.get('nombreMarca')?.hasError('minlength') && formCrearCuenta.get('nombreMarca')?.touched">
+                *El nombre de tu marca debe contar con al menos cinco caracteres.
+              </div>
+              <div 
+                style="color: red;" 
+                *ngIf="formCrearCuenta.get('nombreMarca')?.hasError('maxlength') && formCrearCuenta.get('nombreMarca')?.touched">
+                *El nombre de tu marca no puede tener más de 20 caracteres.
+              </div>
 
               <!--Teléfono-->
               <ion-label style="font-size: 15px; font-weight: bold; color: #2c3357;">
@@ -109,7 +129,7 @@
               <div 
                 style="color: red;" 
                 *ngIf="formCrearCuenta.get('telefono')?.hasError('pattern') && formCrearCuenta.get('telefono')?.touched">
-                *El teléfono es obligatorio y debe contener solo números (máximo 11 dígitos).
+                *El teléfono es obligatorio y debe contener solo números (entre 10 a 15 dígitos).
               </div>
               <div style="margin-top: 20px;"></div>
 

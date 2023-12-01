@@ -16,7 +16,7 @@ export class LoginPage {
   constructor(private router:Router, private parametrosForm:FormBuilder, private cuenta:AuthService, private toast:ToastController,private alerta:AlertController) { 
     this.formLogin = this.parametrosForm.group({
       email: ['', [Validators.required, Validators.email]], //Valida el formato de correo electrónico.
-      password: ['', [Validators.required, Validators.maxLength(50)]], //Valida que el campo tenga máximo 50 caracteres.
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50)]], //Valida que el campo tenga mínimo 8 caracteres y máximo 50.
     });
   }
 
@@ -57,8 +57,8 @@ export class LoginPage {
             }
           }
         },
-        complete: () => { //"complete" se ejecuta sino entra ni en "next" ni "error".
-          if(!flujoNormal) { //Si "flujoNormal" está en false, significa que nunca entró en "next" porque no hubo conexión con el servidor.
+        complete: () => { //"complete" se ejecuta siempre aunque entra en "next" o "error".
+          if(!flujoNormal) { //Si "flujoNormal" está en false, significa que nunca entró en "next" pero tampoco en "error" porque no hubo conexión con el servidor.
             this.servidorCaido();
           }
         }

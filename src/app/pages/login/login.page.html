@@ -51,6 +51,16 @@
                 *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched">
                 *La contraseña es obligatoria.
               </div>
+              <div
+                style="color: red;"  
+                *ngIf="formLogin.get('password')?.hasError('minlength') && formLogin.get('password')?.touched">
+                *La contraseña debe ser de mínimo 8 caracteres.
+              </div>
+              <div
+                style="color: red;"  
+                *ngIf="formLogin.get('password')?.hasError('maxlength') && formLogin.get('password')?.touched">
+                *La contraseña debe ser de máximo 50 caracteres.
+              </div>
               <div style="margin-top: 15px;"></div>
               
               <!--Recordarme-->
