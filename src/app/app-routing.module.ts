@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/crear-cuenta/crear-cuenta.module').then( m => m.CrearCuentaPageModule)
   },
   {
+    path: 'crear-cuenta/:correo',
+    loadChildren: () => import('./pages/crear-cuenta/crear-cuenta.module').then(m => m.CrearCuentaPageModule)
+  },
+  {
     path: 'ver-productos',
     loadChildren: () => import('./pages/ver-productos/ver-productos.module').then( m => m.VerProductosPageModule)
   },

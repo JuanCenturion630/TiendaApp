@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -12,9 +13,12 @@ import { AlertController } from '@ionic/angular';
 })
 export class CrearCuentaPage {
 
+  correo: string = '';
   formCrearCuenta: FormGroup; //Formulario reactivo.
-  constructor(private router:Router, private parametrosForm:FormBuilder, private cuenta:AuthService, private toast:ToastController,private alerta:AlertController) {
-    this.formCrearCuenta = this.parametrosForm.group({
+  constructor(private router:Router, private parametrosForm:FormBuilder, private cuenta:AuthService, 
+    private toast:ToastController,private alerta:AlertController,private route: ActivatedRoute) {
+    
+      this.formCrearCuenta = this.parametrosForm.group({
       nombreUsuario: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{1,50}$/)]], //Valida que el campo sea alfanumérico ([a-zA-Z0-9]) y que tenga entre 1 a 50 carácteres {1,50}.
       email: ['', [Validators.required, Validators.email]], //Valida el formato de correo electrónico.
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50)]], //Valida que el campo tenga mínimo 8 caracteres y máximo 50.
@@ -22,6 +26,7 @@ export class CrearCuentaPage {
       telefono: ['', [Validators.pattern(/^[0-9]{10,15}$/)]], //Valida que el campo tenga solo números y los caracteres de 10 a 15. Es opcional, así que no tiene "Validators.required" que lo volvería obligatorio.
       aceptoTerminos: [false, Validators.requiredTrue], //Valida que este botón esté presionado.
     });
+    this.correo = decodeURIComponent(this.route.snapshot.paramMap.get('correo') || ''); //Recibe correo de página "home".
   }
 
   /**

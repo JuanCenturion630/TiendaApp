@@ -34,7 +34,7 @@
                     Plan gratis para comenzar y más opciones para quienes ya venden online
                 </ion-row>
                 <div style="margin-top: 15px;"></div>
-                <ion-input fill="outline" placeholder="Escribí el e-mail que más usás" style="background-color: #ffffff; color: black; border: none; box-shadow: none">
+                <ion-input (ionInput)="capturarCorreo($event)" fill="outline" placeholder="Escribí el e-mail que más usás" style="background-color: #ffffff; color: black; border: none; box-shadow: none">
                 </ion-input>
                 <ion-button (click)="irACrearCuenta()" style="--background: #006bc8; --color:#ffffff; text-transform: none; font-size: bold; position: absolute; top: 88%; left: 82%; transform: translate(-50%, -50%); z-index: 2;">
                     Crear tienda gratis
